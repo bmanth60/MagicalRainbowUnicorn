@@ -1,0 +1,16 @@
+# Exclude git from build
+.git/
+
+# Exclude existing vendors
+node_modules/
+
+# Exclude docker related artifacts
+docker*
+Docker*
+
+# Exclude existing builds and reports
+reports/
+dist/
+
+# Logs
+*.log

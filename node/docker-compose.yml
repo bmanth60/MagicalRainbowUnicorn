@@ -1,0 +1,19 @@
+version: '2'
+volumes:
+  deps:
+    driver: local
+
+services:
+  sample-app:
+    image: node:8.11.3
+    working_dir: /usr/src/app
+    command: make serve
+    environment:
+      PROJECT_NAME: sample-app
+      PROJECT_BUILD: dev
+      NODE_ENV: debug
+    volumes:
+      - .:/usr/src/app
+      - deps:/usr/src/app/node_modules
+    expose:
+      - 3000
