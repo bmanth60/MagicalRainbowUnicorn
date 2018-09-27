@@ -10,6 +10,10 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import injectReducer from 'utils/injectReducer';
 
 import messages from './messages';
 
@@ -17,6 +21,10 @@ import styled from 'components/styled';
 import TodoList from 'components/List';
 import ListHeader from 'components/ListHeader';
 import ListSidebar from 'components/ListSidebar';
+
+import { toggleChecklist } from './actions';
+import { itemKeySelector } from './selectors';
+import { homePageReducer } from './reducer';
 
 //Photo by <a href="https://unsplash.com/photos/V3nogrYsKiQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"> Casey Horner </a> on https://unsplash.com/search/photos/winning?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText Unsplash
 
@@ -47,25 +55,49 @@ const ToolbarDiv = styled('div')(theme => ({
 }));
 
 /* eslint-disable react/prefer-stateless-function */
-export default class HomePage extends React.PureComponent {
-  constructor() {
-    super();
-
-    this.state = {
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    };
-  }
-
+export class Home extends React.PureComponent {
   render() {
+    console.log(this.props.itemKey);
     return (
       <RootDiv>
         <ListHeader message={messages.header} />
         <ListSidebar items={3} />
         <Content>
           <ToolbarDiv />
-          <TodoList items={3} text={this.state.text} />
+          <TodoList
+            onToggle={this.props.onChecklistToggle}
+            editKey={this.props.itemKey}
+            items={3}
+            text={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
+          />
         </Content>
       </RootDiv>
     );
   }
 }
+
+Home.propTypes = {
+  onChecklistToggle: PropTypes.func,
+  itemKey: PropTypes.number,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    itemKey: itemKeySelector(state)
+  };
+};
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    onChecklistToggle: itemKey => dispatch(toggleChecklist(itemKey)),
+    dispatch,
+  };
+}
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withReducer = injectReducer({ key: 'HomePage', reducer: homePageReducer });
+
+export default compose(
+  withReducer,
+  withConnect,
+)(Home);
