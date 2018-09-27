@@ -18,9 +18,9 @@ function Card(props) {
         </Panel>
     );
 }
-  
+
 Card.propTypes = {
     children: PropTypes.node.isRequired,
 };
-  
+
 export default Card;
