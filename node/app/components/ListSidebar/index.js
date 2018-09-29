@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import styled from 'components/styled';
 import ListSidebarItem from 'components/ListSidebarItem';
+import { messages } from './messages';
 
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Drawer from '@material-ui/core/Drawer';
@@ -38,7 +39,7 @@ function ListSidebar({ items }) {
               <ListItemIcon>
                 <AddCircleIcon color="primary" />
               </ListItemIcon>
-              <ListItemText primary="Add List" />
+              <ListItemText primary={ messages.add.defaultMessage } />
             </ListItem>
             { result }
           </List>
@@ -48,7 +49,7 @@ function ListSidebar({ items }) {
 
 
 ListSidebar.propTypes = {
-    items: PropTypes.number,
+    items: PropTypes.number.isRequired,
 };
-  
+
 export default ListSidebar;

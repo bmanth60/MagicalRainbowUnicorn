@@ -48,9 +48,9 @@ function ListItem({ onClick, editable, text }) {
 
 
 ListItem.propTypes = {
-  onClick: PropTypes.func,
-  editable: PropTypes.bool,
-  text: PropTypes.string,
+  onClick: PropTypes.func.isRequired,
+  editable: PropTypes.bool.isRequired,
+  text: PropTypes.string.isRequired,
 };
 
 export default ListItem;

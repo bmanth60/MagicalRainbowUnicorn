@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import ListItem from 'components/ListItem';
 import Card from 'components/Card';
+import { messages } from './messages';
 
 import Grid from '@material-ui/core/Grid';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
@@ -25,7 +26,7 @@ function List({ items, text, onToggle, editKey }) {
                         <TextField
                         fullWidth
                         margin="normal"
-                        placeholder="Add List Item"
+                        placeholder={ messages.add.defaultMessage }
                         />
                     </Grid>
                 </Grid>
@@ -36,10 +37,10 @@ function List({ items, text, onToggle, editKey }) {
 }
 
 List.propTypes = {
-    items: PropTypes.number,
-    text: PropTypes.string,
-    onToggle: PropTypes.func,
-    editKey: PropTypes.number,
+    items: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+    onToggle: PropTypes.func.isRequired,
+    editKey: PropTypes.number.isRequired,
 };
 
 export default List;

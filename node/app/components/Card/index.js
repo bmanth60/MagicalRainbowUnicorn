@@ -11,16 +11,17 @@ const Panel = styled(Paper)(theme => ({
     padding: theme.spacing.unit * 1,
 }));
 
-function Card(props) {
+function Card({ children, style }) {
     return (
-        <Panel elevation={1}>
-            { props.children }
+        <Panel style={style} elevation={1}>
+            { children }
         </Panel>
     );
 }
 
 Card.propTypes = {
-    children: PropTypes.node.isRequired,
+  style: PropTypes.object,
+  children: PropTypes.node.isRequired,
 };
 
 export default Card;

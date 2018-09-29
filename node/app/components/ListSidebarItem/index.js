@@ -22,7 +22,7 @@ function ListSidebarItem({ itemKey }) {
 }
 
 ListSidebarItem.propTypes = {
-    itemKey: PropTypes.number,
+    itemKey: PropTypes.number.isRequired,
 };
-  
+
 export default ListSidebarItem;

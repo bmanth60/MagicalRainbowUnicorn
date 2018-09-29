@@ -59,7 +59,7 @@ export class Home extends React.PureComponent {
   render() {
     return (
       <RootDiv>
-        <ListHeader message={messages.header} />
+        <ListHeader message={messages.header.defaultMessage} />
         <ListSidebar items={3} />
         <Content>
           <ToolbarDiv />

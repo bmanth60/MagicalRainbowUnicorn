@@ -6,7 +6,6 @@ import styled from 'components/styled';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { FormattedMessage } from 'react-intl';
 
 const drawerWidth = 300;
 
@@ -14,16 +13,16 @@ const MainMenu = styled(AppBar)(theme => ({
     fontFamily: "'Shadows Into Light', cursive",
     position: 'absolute',
     marginLeft: `${drawerWidth}px`,
-    width: '100%',
+    width: window.innerWidth - drawerWidth,
   }));
 
 function ListHeader({ message }) {
     return (
         <MainMenu>
             <Toolbar>
-            <Typography variant="title" color="inherit" noWrap>
-                <FormattedMessage { ...message } />
-            </Typography>
+              <Typography variant="title" color="inherit" noWrap>
+                { message }
+              </Typography>
             </Toolbar>
         </MainMenu>
     );
@@ -31,7 +30,7 @@ function ListHeader({ message }) {
 
 
 ListHeader.propTypes = {
-    message: PropTypes.object,
+    message: PropTypes.string.isRequired,
 };
-  
+
 export default ListHeader;
