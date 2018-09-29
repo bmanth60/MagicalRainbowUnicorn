@@ -6,8 +6,32 @@ import Card from 'components/Card';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Checkbox from '@material-ui/core/Checkbox';
+import TextField from '@material-ui/core/TextField';
 
-function ListItem({ onClick, text }) {
+function getContent(onClick, editable, text) {
+  if (editable) {
+    return (
+      <TextField
+        multiline
+        fullWidth
+        margin="normal"
+        value={text}
+        autoFocus={true}
+      />
+    )
+  }
+
+  return (
+    <Typography
+      onClick={onClick}
+      style={{fontSize: "1rem"}}
+    >{text}
+    </Typography>
+  )
+}
+
+function ListItem({ onClick, editable, text }) {
+  const content = getContent(onClick, editable, text)
     return (
       <Card>
         <Grid container spacing={0} alignItems="baseline">
@@ -15,7 +39,7 @@ function ListItem({ onClick, text }) {
               <Checkbox />
           </Grid>
           <Grid item xs={11}>
-              <Typography onClick={onClick} style={{fontSize: "1rem"}}>{text}</Typography>
+            {content}
           </Grid>
         </Grid>
       </Card>
@@ -24,9 +48,9 @@ function ListItem({ onClick, text }) {
 
 
 ListItem.propTypes = {
-  items: PropTypes.number,
   onClick: PropTypes.func,
+  editable: PropTypes.bool,
   text: PropTypes.string,
 };
-  
+
 export default ListItem;

@@ -5,23 +5,13 @@ import ListItem from 'components/ListItem';
 import Card from 'components/Card';
 
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import TextField from '@material-ui/core/TextField';
 
 function List({ items, text, onToggle, editKey }) {
     const result = [];
     for (let i=0; i < items; ++i) {
-        if (i === editKey) {
-            result.push(
-                <TextField
-                    fullWidth
-                    margin="normal"
-                    value={text}
-                />
-            )
-        } else {
-            result.push(<ListItem key={i} onClick={onToggle(i)} text={text} />);
-        }
+      result.push(<ListItem key={i} editable={(i === editKey)} onClick={() => { onToggle(i) }} text={text} />);
     }
 
     return (
@@ -44,12 +34,12 @@ function List({ items, text, onToggle, editKey }) {
         </div>
     );
 }
-  
+
 List.propTypes = {
     items: PropTypes.number,
     text: PropTypes.string,
     onToggle: PropTypes.func,
     editKey: PropTypes.number,
 };
-  
+
 export default List;

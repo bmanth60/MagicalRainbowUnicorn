@@ -57,7 +57,6 @@ const ToolbarDiv = styled('div')(theme => ({
 /* eslint-disable react/prefer-stateless-function */
 export class Home extends React.PureComponent {
   render() {
-    console.log(this.props.itemKey);
     return (
       <RootDiv>
         <ListHeader message={messages.header} />
@@ -83,13 +82,13 @@ Home.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    itemKey: itemKeySelector(state)
+    itemKey: itemKeySelector(state.get("HomePage"))
   };
 };
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onChecklistToggle: itemKey => dispatch(toggleChecklist(itemKey)),
+    onChecklistToggle: (itemKey) => dispatch(toggleChecklist(itemKey)),
     dispatch,
   };
 }
