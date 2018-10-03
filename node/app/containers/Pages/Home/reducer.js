@@ -68,7 +68,8 @@ export const homePageReducer = (state = initialState, action) => {
 
       break;
     case CHECKLIST_ADD:
-      newState = state.get('lists').push(fromJS(empty));
+      lists = state.get('lists').push(fromJS(empty));
+      newState = state.set('lists', lists);
       break;
     case CHECKLIST_UPDATE:
       selected = state.get('selectedList');
