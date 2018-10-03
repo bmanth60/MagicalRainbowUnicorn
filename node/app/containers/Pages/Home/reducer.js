@@ -18,19 +18,15 @@ export const initialState = fromJS({
   selectedItem: -1,
   lists: [
     {
-      name: 'list 0',
-      items: [
-        {
-          text: 'Lorem ipsum',
-        }
-      ],
+      name: 'new list',
+      items: [],
     },
   ],
 });
 
 export const homePageReducer = (state = initialState, action) => {
-  const empty = {name: 'new list', items:[]};
-  let newState = state, selected, lists, list, item;
+  const empty = initialState.getIn(['lists', 0]);
+  let newState = state, selected, lists, items;
 
   switch (action.type) {
     case CHECKLIST_ITEM_TOGGLE:
@@ -39,18 +35,15 @@ export const homePageReducer = (state = initialState, action) => {
 
     case CHECKLIST_ITEM_ADD:
       selected = state.get('selectedList');
-      list = state.getIn(['lists', selected, 'items']);
+      items = state.getIn(['lists', selected, 'items']);
 
-      if (list == undefined) {
+      if (items == undefined) {
         console.error('invalid list key');
         break;
       }
 
-      //TODO - Brian 20181002 - Fix items with immutable
-      const result = list.push(fromJS({ text: action.text }));
-      console.log(result);
-      state.set('lists', lists);
-
+      items = items.push(fromJS({ text: action.text }));
+      newState = state.setIn(['lists', selected, 'items'], items);
       break;
     case CHECKLIST_ITEM_UPDATE:
       selected = state.get('selectedList');
@@ -68,7 +61,7 @@ export const homePageReducer = (state = initialState, action) => {
 
       break;
     case CHECKLIST_ADD:
-      lists = state.get('lists').push(fromJS(empty));
+      lists = state.get('lists').push(empty);
       newState = state.set('lists', lists);
       break;
     case CHECKLIST_UPDATE:
@@ -88,9 +81,9 @@ export const homePageReducer = (state = initialState, action) => {
 
       lists = state.get('lists').delete(selected);
       if (lists.size == 0) {
-        lists = lists.push(fromJS(empty))
+        lists = lists.push(empty)
       }
-      newState = state.set('lists', lists);
+      newState = state.set('lists', lists).set('selectedList', 0);
       break;
     case CHECKLIST_NAME_EDIT:
       newState = state.set('editListName', action.isEditing)

@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import TextField from '@material-ui/core/TextField';
 
-function List({ onToggle, onEdit, items, editId }) {
+function List({ onAdd, onToggle, onEdit, items, editId }) {
     let result = [];
     if (items) {
       result = items.map((
@@ -39,6 +39,11 @@ function List({ onToggle, onEdit, items, editId }) {
                         <TextField
                         fullWidth
                         margin="normal"
+                        onKeyPress={(e) => {
+                          if (e.key === 'Enter') {
+                            onAdd(e.target.value);
+                          }
+                        }}
                         placeholder={ messages.add.defaultMessage }
                         />
                     </Grid>
@@ -50,6 +55,7 @@ function List({ onToggle, onEdit, items, editId }) {
 }
 
 List.propTypes = {
+  onAdd: PropTypes.func.isRequired,
   onToggle: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
   items: PropTypes.object,
