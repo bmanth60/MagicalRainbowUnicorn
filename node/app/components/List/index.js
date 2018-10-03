@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import TextField from '@material-ui/core/TextField';
 
-function List({ onAdd, onToggle, onEdit, items, editId }) {
+function List({ onAdd, onCheck, onToggle, onEdit, items, editId }) {
     let result = [];
     if (items) {
       result = items.map((
@@ -20,7 +20,8 @@ function List({ onAdd, onToggle, onEdit, items, editId }) {
               editable={(index === editId)}
               onClick={(e) => { onToggle(index); }}
               onBlur={(e) => { onToggle(-1); }}
-              onChange={(e)=>{ onEdit(index, e.target.value); }}
+              onChange={(e)=> { onEdit(index, e.target.value); }}
+              onCheck={(e) => { onCheck(index); }}
               text={item.get('text')}
             />
           )
@@ -58,6 +59,7 @@ List.propTypes = {
   onAdd: PropTypes.func.isRequired,
   onToggle: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
+  onCheck: PropTypes.func.isRequired,
   items: PropTypes.object,
   editId: PropTypes.number.isRequired,
 };

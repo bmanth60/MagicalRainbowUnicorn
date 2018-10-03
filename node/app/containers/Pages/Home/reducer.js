@@ -32,7 +32,6 @@ export const homePageReducer = (state = initialState, action) => {
     case CHECKLIST_ITEM_TOGGLE:
       newState = state.set('selectedItem', action.key);
       break;
-
     case CHECKLIST_ITEM_ADD:
       selected = state.get('selectedList');
       items = state.getIn(['lists', selected, 'items']);
@@ -44,6 +43,16 @@ export const homePageReducer = (state = initialState, action) => {
 
       items = items.push(fromJS({ text: action.text }));
       newState = state.setIn(['lists', selected, 'items'], items);
+      break;
+    case CHECKLIST_ITEM_CHECK:
+      selected = state.get('selectedList');
+
+      if (selected == undefined ) {
+        console.error('invalid list key');
+        break;
+      }
+
+      newState = state.deleteIn(['lists', selected, 'items', action.key]);
       break;
     case CHECKLIST_ITEM_UPDATE:
       selected = state.get('selectedList');
@@ -58,7 +67,6 @@ export const homePageReducer = (state = initialState, action) => {
       }
 
       newState = state.set('selectedList', action.key);
-
       break;
     case CHECKLIST_ADD:
       lists = state.get('lists').push(empty);
@@ -66,14 +74,17 @@ export const homePageReducer = (state = initialState, action) => {
       break;
     case CHECKLIST_UPDATE:
       selected = state.get('selectedList');
+
       if (selected == undefined ) {
         console.error('invalid list key');
         break;
       }
+
       newState = state.setIn(['lists', selected, 'name'], action.name);
       break;
     case CHECKLIST_DELETE:
       selected = state.get('selectedList');
+
       if (selected == undefined ) {
         console.error('invalid list key');
         break;
@@ -83,6 +94,7 @@ export const homePageReducer = (state = initialState, action) => {
       if (lists.size == 0) {
         lists = lists.push(empty)
       }
+
       newState = state.set('lists', lists).set('selectedList', 0);
       break;
     case CHECKLIST_NAME_EDIT:
