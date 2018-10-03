@@ -15,8 +15,6 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import injectReducer from 'utils/injectReducer';
 
-import messages from './messages';
-
 import styled from 'components/styled';
 import TodoList from 'components/List';
 import ListHeader from 'components/ListHeader';
@@ -31,6 +29,7 @@ import {
   updateChecklist,
   deleteChecklist,
   selectChecklist,
+  toggleChecklistName,
 } from './actions';
 
 import {
@@ -38,6 +37,7 @@ import {
   listSelector,
   selectedListSelector,
   itemSelector,
+  listNameEditSelector,
 } from './selectors';
 
 import { homePageReducer } from './reducer';
@@ -76,9 +76,11 @@ export class Home extends React.PureComponent {
     return (
       <RootDiv>
         <ListHeader
+          editing = { this.props.listNameEdit }
+          onToggle = { this.props.toggleChecklistName }
           onDelete = { this.props.deleteChecklist }
-          onChange = { this.props.updateChecklist }
-          message={ this.props.item.get('name') || messages.header.defaultMessage }
+          onEdit = { this.props.updateChecklist }
+          message={ this.props.item.get('name') }
         />
         <ListSidebar
           onAdd={ this.props.addChecklist }
@@ -105,6 +107,7 @@ export class Home extends React.PureComponent {
 Home.propTypes = {
   selectedItem: PropTypes.number,
   selectedList: PropTypes.number,
+  listNameEdit: PropTypes.bool,
   lists: PropTypes.object,
   item: PropTypes.object,
 };
@@ -116,6 +119,7 @@ const mapStateToProps = (state) => {
     selectedList: selectedListSelector(hpState),
     lists: listSelector(hpState),
     item: itemSelector(hpState),
+    listNameEdit: listNameEditSelector(hpState),
   };
 };
 
@@ -129,6 +133,7 @@ export function mapDispatchToProps(dispatch) {
     updateChecklist: (name) => dispatch(updateChecklist(name)),
     deleteChecklist: (listId) => dispatch(deleteChecklist(listId)),
     selectChecklist: (listId) => dispatch(selectChecklist(listId)),
+    toggleChecklistName: (isEditing) => dispatch(toggleChecklistName(isEditing)),
     dispatch,
   };
 }

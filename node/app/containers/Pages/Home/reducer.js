@@ -9,21 +9,23 @@ import {
   CHECKLIST_DELETE,
   CHECKLIST_SELECT,
   CHECKLIST_ADD,
+  CHECKLIST_NAME_EDIT,
 } from './constants';
 
 export const initialState = fromJS({
-    selectedItem: -1,
-    lists: [
-      {
-        name: 'list 0',
-        items: [
-          {
-            text: 'Lorem ipsum',
-          }
-        ],
-      },
-    ],
-    selectedList: 0,
+  editListName: false,
+  selectedList: 0,
+  selectedItem: -1,
+  lists: [
+    {
+      name: 'list 0',
+      items: [
+        {
+          text: 'Lorem ipsum',
+        }
+      ],
+    },
+  ],
 });
 
 export const homePageReducer = (state = initialState, action) => {
@@ -37,8 +39,7 @@ export const homePageReducer = (state = initialState, action) => {
 
     case CHECKLIST_ITEM_ADD:
       selected = state.get('selectedList');
-      lists = state.get('lists');
-      list = lists.get(selected);
+      list = state.getIn(['lists', selected, 'items']);
 
       if (list == undefined) {
         console.error('invalid list key');
@@ -46,17 +47,14 @@ export const homePageReducer = (state = initialState, action) => {
       }
 
       //TODO - Brian 20181002 - Fix items with immutable
-      list.items.push({ text: action.text });
+      const result = list.push(fromJS({ text: action.text }));
+      console.log(result);
       state.set('lists', lists);
 
       break;
     case CHECKLIST_ITEM_UPDATE:
       selected = state.get('selectedList');
-      lists = state.get('lists');
-      list = lists.setIn([selected, 'items', action.key, 'text'], action.text);
-
-      newState = state.set('lists', list);
-
+      newState = state.setIn(['lists', selected, 'items', action.key, 'text'], action.text);
       break;
     case CHECKLIST_SELECT:
       lists = state.getIn(['lists', action.key]);
@@ -70,35 +68,17 @@ export const homePageReducer = (state = initialState, action) => {
 
       break;
     case CHECKLIST_ADD:
-      lists = state.get('lists');
-      lists = lists.push(fromJS(empty));
-      newState = state.set('lists', lists);
-
+      newState = state.get('lists').push(fromJS(empty));
       break;
     case CHECKLIST_UPDATE:
       selected = state.get('selectedList');
-      lists = state.get('lists');
-      list = lists.get(selected);
-
-      if (list == undefined) {
-        console.error('invalid list key');
-        break;
-      }
-
-      list.name = action.name;
-      newState = state.set('lists', lists);
-
+      newState = state.setIn(['lists', selected, 'name'], action.name);
       break;
     case CHECKLIST_DELETE:
-      lists = state.get('lists');
-
-      if (lists.get(action.key) == undefined ) {
-        console.error('invalid list key');
-        break;
-      }
-
-      newState = state.set('lists', lists.delete(action.key));
-
+      newState = sstate.deleteIn(['lists', action.key]);
+      break;
+    case CHECKLIST_NAME_EDIT:
+      newState = state.set('editListName', action.isEditing)
       break;
   }
 

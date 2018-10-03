@@ -7,7 +7,15 @@ import {
   CHECKLIST_DELETE,
   CHECKLIST_ADD,
   CHECKLIST_SELECT,
+  CHECKLIST_NAME_EDIT,
 } from './constants';
+
+export const toggleChecklistName = (isEditing) => {
+  return {
+    type: CHECKLIST_NAME_EDIT,
+    isEditing: isEditing,
+  }
+}
 
 export const toggleChecklistItem = (key) => {
   return {
@@ -54,7 +62,7 @@ export const addChecklist = () => {
 export const updateChecklist = (name) => {
   return {
     type: CHECKLIST_UPDATE,
-    name: text,
+    name: name,
   };
 }
 
