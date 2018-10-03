@@ -13,7 +13,7 @@ const MainMenu = styled(AppBar)(theme => ({
     fontFamily: "'Shadows Into Light', cursive",
     position: 'absolute',
     marginLeft: `${drawerWidth}px`,
-    width: window.innerWidth - drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
   }));
 
 function ListHeader({ message }) {

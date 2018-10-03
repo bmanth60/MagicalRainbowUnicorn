@@ -24,24 +24,33 @@ const DrawerPaper = styled(Drawer)(theme => ({
     },
 }));
 
-function ListSidebar({ items }) {
-    const result = [];
-    for (let i=0; i < items; ++i) {
-        result.push(<ListSidebarItem key={i} itemKey={i} />);
-    }
+function ListSidebar({ onAdd, onSelect, selected, items }) {
+    const lists = items.map(
+      (item, index) => {
+        return (
+          <ListSidebarItem
+            onClick={(e) => {onSelect(index);}}
+            selected={(selected == index)}
+            key={index}
+            listId={index}
+            text={item.get('name')}
+          />
+        );
+      }
+    );
 
     return (
         <DrawerPaper
           variant="permanent"
         >
           <List component="nav">
-            <ListItem button>
+            <ListItem button onClick={(e) => {onAdd();}}>
               <ListItemIcon>
-                <AddCircleIcon color="primary" />
+                <AddCircleIcon />
               </ListItemIcon>
               <ListItemText primary={ messages.add.defaultMessage } />
             </ListItem>
-            { result }
+            { lists }
           </List>
         </DrawerPaper>
     );
@@ -49,7 +58,10 @@ function ListSidebar({ items }) {
 
 
 ListSidebar.propTypes = {
-    items: PropTypes.number.isRequired,
+  onAdd: PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  selected: PropTypes.number.isRequired,
+  items: PropTypes.object.isRequired,
 };
 
 export default ListSidebar;

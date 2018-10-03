@@ -22,8 +22,24 @@ import TodoList from 'components/List';
 import ListHeader from 'components/ListHeader';
 import ListSidebar from 'components/ListSidebar';
 
-import { toggleChecklist } from './actions';
-import { itemKeySelector } from './selectors';
+import {
+  toggleChecklistItem,
+  checkChecklistItem,
+  addChecklistItem,
+  updateChecklistItem,
+  addChecklist,
+  updateChecklist,
+  deleteChecklist,
+  selectChecklist,
+} from './actions';
+
+import {
+  selectedItemSelector,
+  listSelector,
+  selectedListSelector,
+  itemSelector,
+} from './selectors';
+
 import { homePageReducer } from './reducer';
 
 //Photo by <a href="https://unsplash.com/photos/V3nogrYsKiQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"> Casey Horner </a> on https://unsplash.com/search/photos/winning?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText Unsplash
@@ -59,15 +75,26 @@ export class Home extends React.PureComponent {
   render() {
     return (
       <RootDiv>
-        <ListHeader message={messages.header.defaultMessage} />
-        <ListSidebar items={3} />
+        <ListHeader
+          onDelete = { this.props.deleteChecklist }
+          onChange = { this.props.updateChecklist }
+          message={ this.props.item.get('name') || messages.header.defaultMessage }
+        />
+        <ListSidebar
+          onAdd={ this.props.addChecklist }
+          onSelect= { this.props.selectChecklist }
+          selected={ this.props.selectedList }
+          items={ this.props.lists }
+        />
         <Content>
           <ToolbarDiv />
           <TodoList
-            onToggle={this.props.onChecklistToggle}
-            editKey={this.props.itemKey}
-            items={3}
-            text={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
+            onToggle = { this.props.toggleChecklistItem }
+            onEdit = { this.props.updateChecklistItem }
+            onAdd = { this.props.addChecklistItem }
+            onCheck = { this.props.checkChecklistItem }
+            editId = { this.props.selectedItem }
+            items = { this.props.item.get('items') }
           />
         </Content>
       </RootDiv>
@@ -76,19 +103,32 @@ export class Home extends React.PureComponent {
 }
 
 Home.propTypes = {
-  onChecklistToggle: PropTypes.func,
-  itemKey: PropTypes.number,
+  selectedItem: PropTypes.number,
+  selectedList: PropTypes.number,
+  lists: PropTypes.object,
+  item: PropTypes.object,
 };
 
 const mapStateToProps = (state) => {
+  const hpState = state.get('HomePage');
   return {
-    itemKey: itemKeySelector(state.get("HomePage"))
+    selectedItem: selectedItemSelector(hpState),
+    selectedList: selectedListSelector(hpState),
+    lists: listSelector(hpState),
+    item: itemSelector(hpState),
   };
 };
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onChecklistToggle: (itemKey) => dispatch(toggleChecklist(itemKey)),
+    toggleChecklistItem: (itemId) => dispatch(toggleChecklistItem(itemId)),
+    checkChecklistItem: (itemId) => dispatch(checkChecklistItem(itemId)),
+    addChecklistItem: (text) => dispatch(addChecklistItem(text)),
+    updateChecklistItem: (itemId, text) => dispatch(updateChecklistItem(itemId, text)),
+    addChecklist: () => dispatch(addChecklist()),
+    updateChecklist: (name) => dispatch(updateChecklist(name)),
+    deleteChecklist: (listId) => dispatch(deleteChecklist(listId)),
+    selectChecklist: (listId) => dispatch(selectChecklist(listId)),
     dispatch,
   };
 }

@@ -8,14 +8,16 @@ import Typography from '@material-ui/core/Typography';
 import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
 
-function getContent(onClick, editable, text) {
+function getContent(onClick, onBlur, onChange, editable, text) {
+  const safeText = text ? text : '';
   if (editable) {
     return (
       <TextField
-        multiline
         fullWidth
         margin="normal"
-        value={text}
+        onChange={onChange}
+        onBlur={onBlur}
+        value={safeText}
         autoFocus={true}
       />
     )
@@ -25,13 +27,13 @@ function getContent(onClick, editable, text) {
     <Typography
       onClick={onClick}
       style={{fontSize: "1rem"}}
-    >{text}
+    >{safeText}
     </Typography>
   )
 }
 
-function ListItem({ onClick, editable, text }) {
-  const content = getContent(onClick, editable, text)
+function ListItem({ onClick, onBlur, onChange, editable, text }) {
+  const content = getContent(onClick, onBlur, onChange, editable, text)
     return (
       <Card>
         <Grid container spacing={0} alignItems="baseline">
@@ -49,8 +51,10 @@ function ListItem({ onClick, editable, text }) {
 
 ListItem.propTypes = {
   onClick: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   editable: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
 };
 
 export default ListItem;
