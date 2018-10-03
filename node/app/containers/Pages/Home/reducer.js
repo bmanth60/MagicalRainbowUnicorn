@@ -72,10 +72,24 @@ export const homePageReducer = (state = initialState, action) => {
       break;
     case CHECKLIST_UPDATE:
       selected = state.get('selectedList');
+      if (selected == undefined ) {
+        console.error('invalid list key');
+        break;
+      }
       newState = state.setIn(['lists', selected, 'name'], action.name);
       break;
     case CHECKLIST_DELETE:
-      newState = sstate.deleteIn(['lists', action.key]);
+      selected = state.get('selectedList');
+      if (selected == undefined ) {
+        console.error('invalid list key');
+        break;
+      }
+
+      lists = state.get('lists').delete(selected);
+      if (lists.size == 0) {
+        lists = lists.push(fromJS(empty))
+      }
+      newState = state.set('lists', lists);
       break;
     case CHECKLIST_NAME_EDIT:
       newState = state.set('editListName', action.isEditing)

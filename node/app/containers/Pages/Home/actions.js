@@ -66,9 +66,8 @@ export const updateChecklist = (name) => {
   };
 }
 
-export const deleteChecklist = (key) => {
+export const deleteChecklist = () => {
   return {
     type: CHECKLIST_DELETE,
-    key: key,
   };
 }

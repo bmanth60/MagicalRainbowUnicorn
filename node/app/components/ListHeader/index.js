@@ -6,6 +6,9 @@ import ListItemContent from 'components/ListItemContent';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Grid from '@material-ui/core/Grid';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const drawerWidth = 300;
 
@@ -23,14 +26,23 @@ function ListHeader({ onToggle, onEdit, onDelete, editing, message }) {
     return (
         <HeaderBar>
             <Toolbar>
-              <ListItemContent
-                onClick={(e) => { onToggle(true); }}
-                onBlur={(e) => { onToggle(false); }}
-                onChange={(e) => { onEdit(e.target.value); }}
-                typographyProps={{variant: 'title', color: 'inherit', noWrap: true}}
-                editable={editing}
-                text={message}
-              />
+              <Grid container spacing={0} alignItems="baseline">
+                <Grid item xs={11}>
+                  <ListItemContent
+                    onClick={(e) => { onToggle(true); }}
+                    onBlur={(e) => { onToggle(false); }}
+                    onChange={(e) => { onEdit(e.target.value); }}
+                    typographyProps={{variant: 'title', color: 'inherit', noWrap: true}}
+                    editable={editing}
+                    text={message}
+                  />
+                </Grid>
+                <Grid item xs={1}>
+                  <IconButton onClick={(e) => { onDelete(); }} aria-label="Delete" color="inherit" >
+                    <DeleteIcon />
+                  </IconButton>
+                </Grid>
+              </Grid>
             </Toolbar>
         </HeaderBar>
     );

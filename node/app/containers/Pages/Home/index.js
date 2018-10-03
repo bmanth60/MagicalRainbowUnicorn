@@ -131,7 +131,7 @@ export function mapDispatchToProps(dispatch) {
     updateChecklistItem: (itemId, text) => dispatch(updateChecklistItem(itemId, text)),
     addChecklist: () => dispatch(addChecklist()),
     updateChecklist: (name) => dispatch(updateChecklist(name)),
-    deleteChecklist: (listId) => dispatch(deleteChecklist(listId)),
+    deleteChecklist: () => dispatch(deleteChecklist()),
     selectChecklist: (listId) => dispatch(selectChecklist(listId)),
     toggleChecklistName: (isEditing) => dispatch(toggleChecklistName(isEditing)),
     dispatch,
