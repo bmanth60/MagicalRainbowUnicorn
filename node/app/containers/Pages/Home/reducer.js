@@ -26,7 +26,10 @@ export const initialState = fromJS({
 
 export const homePageReducer = (state = initialState, action) => {
   const empty = initialState.getIn(['lists', 0]);
-  let newState = state, selected, lists, items;
+  let newState = state;
+  let selected;
+  let lists;
+  let items;
 
   switch (action.type) {
     case CHECKLIST_ITEM_TOGGLE:
@@ -36,7 +39,7 @@ export const homePageReducer = (state = initialState, action) => {
       selected = state.get('selectedList');
       items = state.getIn(['lists', selected, 'items']);
 
-      if (items == undefined) {
+      if (items === undefined) {
         console.error('invalid list key');
         break;
       }
@@ -47,7 +50,7 @@ export const homePageReducer = (state = initialState, action) => {
     case CHECKLIST_ITEM_CHECK:
       selected = state.get('selectedList');
 
-      if (selected == undefined ) {
+      if (selected === undefined) {
         console.error('invalid list key');
         break;
       }
@@ -56,12 +59,15 @@ export const homePageReducer = (state = initialState, action) => {
       break;
     case CHECKLIST_ITEM_UPDATE:
       selected = state.get('selectedList');
-      newState = state.setIn(['lists', selected, 'items', action.key, 'text'], action.text);
+      newState = state.setIn(
+        ['lists', selected, 'items', action.key, 'text'],
+        action.text,
+      );
       break;
     case CHECKLIST_SELECT:
       lists = state.getIn(['lists', action.key]);
 
-      if (lists == undefined ) {
+      if (lists === undefined) {
         console.error('invalid list key');
         break;
       }
@@ -75,7 +81,7 @@ export const homePageReducer = (state = initialState, action) => {
     case CHECKLIST_UPDATE:
       selected = state.get('selectedList');
 
-      if (selected == undefined ) {
+      if (selected === undefined) {
         console.error('invalid list key');
         break;
       }
@@ -85,22 +91,24 @@ export const homePageReducer = (state = initialState, action) => {
     case CHECKLIST_DELETE:
       selected = state.get('selectedList');
 
-      if (selected == undefined ) {
+      if (selected === undefined) {
         console.error('invalid list key');
         break;
       }
 
       lists = state.get('lists').delete(selected);
-      if (lists.size == 0) {
-        lists = lists.push(empty)
+      if (lists.size === 0) {
+        lists = lists.push(empty);
       }
 
       newState = state.set('lists', lists).set('selectedList', 0);
       break;
     case CHECKLIST_NAME_EDIT:
-      newState = state.set('editListName', action.isEditing)
+      newState = state.set('editListName', action.isEditing);
+      break;
+    default:
       break;
   }
 
   return newState;
-}
+};

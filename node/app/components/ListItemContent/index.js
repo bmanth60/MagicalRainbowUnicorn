@@ -4,34 +4,38 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 
-function ListItemContent({ onClick, onBlur, onChange, editable, text, typographyProps }) {
+function ListItemContent({
+  onClick,
+  onBlur,
+  onChange,
+  editable,
+  text,
+  typographyProps,
+}) {
   if (editable) {
     return (
       <TextField
         fullWidth
-        margin='normal'
+        margin="normal"
         onChange={onChange}
         onBlur={onBlur}
-        onKeyPress={(e) => {
+        onKeyPress={e => {
           if (e.key === 'Enter') {
             onBlur(e);
           }
         }}
         value={text}
-        autoFocus={true}
+        autoFocus
       />
-    )
+    );
   }
 
   return (
-    <Typography
-      {...typographyProps}
-      onClick={onClick}
-    >{text}
+    <Typography {...typographyProps} onClick={onClick}>
+      {text}
     </Typography>
-  )
+  );
 }
-
 
 ListItemContent.propTypes = {
   onClick: PropTypes.func.isRequired,

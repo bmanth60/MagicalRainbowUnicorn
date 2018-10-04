@@ -38,7 +38,7 @@ test: testv
 
 testv:
 	npm run test
-	
+
 testx: check depinfo testv
 
 # special tests: cover
@@ -46,8 +46,8 @@ cover: testv
 
 # linting
 check:
-	npm run lint
 	npm run prettify "{app,__{tests,mocks}__}/**/*.js"
+	npm run lint
 
 # serving
 serve:

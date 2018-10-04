@@ -10,64 +10,46 @@ import {
   CHECKLIST_NAME_EDIT,
 } from './constants';
 
-export const toggleChecklistName = (isEditing) => {
-  return {
-    type: CHECKLIST_NAME_EDIT,
-    isEditing: isEditing,
-  }
-}
+export const toggleChecklistName = isEditing => ({
+  type: CHECKLIST_NAME_EDIT,
+  isEditing,
+});
 
-export const toggleChecklistItem = (key) => {
-  return {
-    type: CHECKLIST_ITEM_TOGGLE,
-    key: key,
-  };
-}
+export const toggleChecklistItem = key => ({
+  type: CHECKLIST_ITEM_TOGGLE,
+  key,
+});
 
-export const addChecklistItem = (text) => {
-  return {
-    type: CHECKLIST_ITEM_ADD,
-    text: text,
-  };
-}
+export const addChecklistItem = text => ({
+  type: CHECKLIST_ITEM_ADD,
+  text,
+});
 
-export const updateChecklistItem = (key, text) => {
-  return {
-    type: CHECKLIST_ITEM_UPDATE,
-    key: key,
-    text: text,
-  };
-}
+export const updateChecklistItem = (key, text) => ({
+  type: CHECKLIST_ITEM_UPDATE,
+  key,
+  text,
+});
 
-export const checkChecklistItem = (key) => {
-  return {
-    type: CHECKLIST_ITEM_CHECK,
-    key: key,
-  };
-}
+export const checkChecklistItem = key => ({
+  type: CHECKLIST_ITEM_CHECK,
+  key,
+});
 
-export const selectChecklist = (key) => {
-  return {
-    type: CHECKLIST_SELECT,
-    key: key,
-  };
-}
+export const selectChecklist = key => ({
+  type: CHECKLIST_SELECT,
+  key,
+});
 
-export const addChecklist = () => {
-  return {
-    type: CHECKLIST_ADD,
-  };
-}
+export const addChecklist = () => ({
+  type: CHECKLIST_ADD,
+});
 
-export const updateChecklist = (name) => {
-  return {
-    type: CHECKLIST_UPDATE,
-    name: name,
-  };
-}
+export const updateChecklist = name => ({
+  type: CHECKLIST_UPDATE,
+  name,
+});
 
-export const deleteChecklist = () => {
-  return {
-    type: CHECKLIST_DELETE,
-  };
-}
+export const deleteChecklist = () => ({
+  type: CHECKLIST_DELETE,
+});

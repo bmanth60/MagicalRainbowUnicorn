@@ -8,14 +8,17 @@ export default function styled(Component) {
   return (s, o) => {
     function StyledComponent(props) {
       const { classes, className, ...other } = props;
-      return <Component className={classNames(classes.root, className)} {...other} />;
+      return (
+        <Component className={classNames(classes.root, className)} {...other} />
+      );
     }
     StyledComponent.propTypes = {
       classes: PropTypes.object.isRequired,
       className: PropTypes.string,
     };
-    
-    const styles = typeof s === 'function' ? theme => ({ root: s(theme) }) : { root: s };
+
+    const styles =
+      typeof s === 'function' ? theme => ({ root: s(theme) }) : { root: s };
     return withStyles(styles, o)(StyledComponent);
   };
 }

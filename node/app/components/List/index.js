@@ -1,58 +1,62 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ListItem from 'components/ListItem';
-import Card from 'components/Card';
-import { messages } from './messages';
-
 import Grid from '@material-ui/core/Grid';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import TextField from '@material-ui/core/TextField';
 
-function List({ onAdd, onCheck, onToggle, onEdit, items, editId }) {
-    let result = [];
-    if (items) {
-      result = items.map((
-        (item, index) => {
-          return (
-            <ListItem
-              key={index}
-              editable={(index === editId)}
-              onClick={(e) => { onToggle(index); }}
-              onBlur={(e) => { onToggle(-1); }}
-              onChange={(e)=> { onEdit(index, e.target.value); }}
-              onCheck={(e) => { onCheck(index); }}
-              text={item.get('text')}
-            />
-          )
-        }
-      ));
-    }
+import ListItem from 'components/ListItem';
+import Card from 'components/Card';
+import { messages } from './messages';
 
-    return (
-        <div>
-            <Card style={{ marginBottom: 10 }}>
-                <Grid container spacing={0} alignItems="baseline">
-                    <Grid item xs={1}>
-                        <AddCircleIcon style={{ marginLeft: "10px" }} color="primary" />
-                    </Grid>
-                    <Grid item xs={11} >
-                        <TextField
-                        fullWidth
-                        margin="normal"
-                        onKeyPress={(e) => {
-                          if (e.key === 'Enter') {
-                            onAdd(e.target.value);
-                          }
-                        }}
-                        placeholder={ messages.add.defaultMessage }
-                        />
-                    </Grid>
-                </Grid>
-            </Card>
-            {result}
-        </div>
-    );
+function List({ onAdd, onCheck, onToggle, onEdit, items, editId }) {
+  let result = [];
+  if (items) {
+    result = items.map((item, index) => (
+      <ListItem
+        key={index}
+        editable={index === editId}
+        onClick={() => {
+          onToggle(index);
+        }}
+        onBlur={() => {
+          onToggle(-1);
+        }}
+        onChange={e => {
+          onEdit(index, e.target.value);
+        }}
+        onCheck={() => {
+          onCheck(index);
+        }}
+        text={item.get('text')}
+      />
+    ));
+  }
+
+  return (
+    <div>
+      <Card style={{ marginBottom: 10 }}>
+        <Grid container spacing={0} alignItems="baseline">
+          <Grid item xs={1}>
+            <AddCircleIcon style={{ marginLeft: '10px' }} color="primary" />
+          </Grid>
+          <Grid item xs={11}>
+            <TextField
+              fullWidth
+              margin="normal"
+              onKeyPress={e => {
+                if (e.key === 'Enter') {
+                  onAdd(e.target.value);
+                }
+              }}
+              placeholder={messages.add.defaultMessage}
+            />
+          </Grid>
+        </Grid>
+      </Card>
+      {result}
+    </div>
+  );
 }
 
 List.propTypes = {

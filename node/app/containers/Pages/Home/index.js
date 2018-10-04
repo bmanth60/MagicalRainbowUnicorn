@@ -42,15 +42,13 @@ import {
 
 import { homePageReducer } from './reducer';
 
-//Photo by <a href="https://unsplash.com/photos/V3nogrYsKiQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"> Casey Horner </a> on https://unsplash.com/search/photos/winning?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText Unsplash
-
 const RootDiv = styled('div')({
-    flexGrow: 1,
-    zIndex: 1,
-    overflow: 'hidden',
-    position: 'relative',
-    display: 'flex',
-    width: '100%',
+  flexGrow: 1,
+  zIndex: 1,
+  overflow: 'hidden',
+  position: 'relative',
+  display: 'flex',
+  width: '100%',
 });
 
 const Content = styled('main')(theme => ({
@@ -63,7 +61,7 @@ const Content = styled('main')(theme => ({
   padding: theme.spacing.unit * 3,
   overflowY: 'auto',
   height: window.innerHeight,
-  //TODO - Add resize listener
+  // TODO Brian - 20181003 - Add resize listener
 }));
 
 const ToolbarDiv = styled('div')(theme => ({
@@ -76,27 +74,27 @@ export class Home extends React.PureComponent {
     return (
       <RootDiv>
         <ListHeader
-          editing = { this.props.listNameEdit }
-          onToggle = { this.props.toggleChecklistName }
-          onDelete = { this.props.deleteChecklist }
-          onEdit = { this.props.updateChecklist }
-          message={ this.props.item.get('name') }
+          editing={this.props.listNameEdit}
+          onToggle={this.props.toggleChecklistName}
+          onDelete={this.props.deleteChecklist}
+          onEdit={this.props.updateChecklist}
+          message={this.props.item.get('name')}
         />
         <ListSidebar
-          onAdd={ this.props.addChecklist }
-          onSelect= { this.props.selectChecklist }
-          selected={ this.props.selectedList }
-          items={ this.props.lists }
+          onAdd={this.props.addChecklist}
+          onSelect={this.props.selectChecklist}
+          selected={this.props.selectedList}
+          items={this.props.lists}
         />
         <Content>
           <ToolbarDiv />
           <TodoList
-            onToggle = { this.props.toggleChecklistItem }
-            onEdit = { this.props.updateChecklistItem }
-            onAdd = { this.props.addChecklistItem }
-            onCheck = { this.props.checkChecklistItem }
-            editId = { this.props.selectedItem }
-            items = { this.props.item.get('items') }
+            onToggle={this.props.toggleChecklistItem}
+            onEdit={this.props.updateChecklistItem}
+            onAdd={this.props.addChecklistItem}
+            onCheck={this.props.checkChecklistItem}
+            editId={this.props.selectedItem}
+            items={this.props.item.get('items')}
           />
         </Content>
       </RootDiv>
@@ -110,9 +108,18 @@ Home.propTypes = {
   listNameEdit: PropTypes.bool,
   lists: PropTypes.object,
   item: PropTypes.object,
+  toggleChecklistItem: PropTypes.func,
+  checkChecklistItem: PropTypes.func,
+  addChecklistItem: PropTypes.func,
+  updateChecklistItem: PropTypes.func,
+  addChecklist: PropTypes.func,
+  deleteChecklist: PropTypes.func,
+  updateChecklist: PropTypes.func,
+  selectChecklist: PropTypes.func,
+  toggleChecklistName: PropTypes.func,
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const hpState = state.get('HomePage');
   return {
     selectedItem: selectedItemSelector(hpState),
@@ -123,23 +130,25 @@ const mapStateToProps = (state) => {
   };
 };
 
-export function mapDispatchToProps(dispatch) {
-  return {
-    toggleChecklistItem: (itemId) => dispatch(toggleChecklistItem(itemId)),
-    checkChecklistItem: (itemId) => dispatch(checkChecklistItem(itemId)),
-    addChecklistItem: (text) => dispatch(addChecklistItem(text)),
-    updateChecklistItem: (itemId, text) => dispatch(updateChecklistItem(itemId, text)),
-    addChecklist: () => dispatch(addChecklist()),
-    updateChecklist: (name) => dispatch(updateChecklist(name)),
-    deleteChecklist: () => dispatch(deleteChecklist()),
-    selectChecklist: (listId) => dispatch(selectChecklist(listId)),
-    toggleChecklistName: (isEditing) => dispatch(toggleChecklistName(isEditing)),
-    dispatch,
-  };
-}
+const withConnect = connect(
+  mapStateToProps,
+  {
+    toggleChecklistItem,
+    checkChecklistItem,
+    addChecklistItem,
+    updateChecklistItem,
+    addChecklist,
+    deleteChecklist,
+    selectChecklist,
+    updateChecklist,
+    toggleChecklistName,
+  },
+);
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
-const withReducer = injectReducer({ key: 'HomePage', reducer: homePageReducer });
+const withReducer = injectReducer({
+  key: 'HomePage',
+  reducer: homePageReducer,
+});
 
 export default compose(
   withReducer,

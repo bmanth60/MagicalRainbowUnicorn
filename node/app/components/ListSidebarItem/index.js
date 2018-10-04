@@ -15,24 +15,24 @@ const SelectedListItem = styled(ListItem)(theme => ({
   },
 }));
 
-function ListSidebarItem({ onClick, listId, text, selected }) {
+function ListSidebarItem({ onClick, text, selected }) {
   if (selected) {
     return (
-      <SelectedListItem button divider >
-          <ListItemIcon>
-              <ListIcon />
-          </ListItemIcon>
-          <ListItemText primary={ text } />
+      <SelectedListItem button divider>
+        <ListItemIcon>
+          <ListIcon />
+        </ListItemIcon>
+        <ListItemText primary={text} />
       </SelectedListItem>
     );
   }
 
   return (
-    <ListItem button divider onClick={onClick} >
-        <ListItemIcon>
-            <ListIcon />
-        </ListItemIcon>
-        <ListItemText primary={ text } />
+    <ListItem button divider onClick={onClick}>
+      <ListItemIcon>
+        <ListIcon />
+      </ListItemIcon>
+      <ListItemText primary={text} />
     </ListItem>
   );
 }
@@ -40,7 +40,6 @@ function ListSidebarItem({ onClick, listId, text, selected }) {
 ListSidebarItem.propTypes = {
   onClick: PropTypes.func.isRequired,
   selected: PropTypes.bool.isRequired,
-  listId: PropTypes.number.isRequired,
   text: PropTypes.string.isRequired,
 };
 
