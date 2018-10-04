@@ -37,6 +37,7 @@ depinfo:
 test: testv
 
 testv:
+	npm run test:clean
 	npm run test
 
 testx: check depinfo testv

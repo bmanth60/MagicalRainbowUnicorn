@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styled from 'components/styled';
-
 import Paper from '@material-ui/core/Paper';
+
+import styled from 'components/styled';
 
 const Panel = styled(Paper)(theme => ({
   backgroundClip: 'padding-box',
@@ -14,7 +14,7 @@ const Panel = styled(Paper)(theme => ({
 function Card({ children, style }) {
   return (
     <Panel style={style} elevation={1}>
-      {children}
+        {children}
     </Panel>
   );
 }
