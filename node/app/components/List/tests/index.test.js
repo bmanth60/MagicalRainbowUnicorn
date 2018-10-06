@@ -54,15 +54,15 @@ describe('<List />', () => {
     const expected = [
       {
         editable: true,
-        text: 'item 1'
+        text: 'item 1',
       },
       {
         editable: false,
-        text: 'item 2'
+        text: 'item 2',
       },
       {
         editable: false,
-        text: 'item 3'
+        text: 'item 3',
       },
     ];
 
@@ -111,7 +111,7 @@ describe('<List />', () => {
     // Call blur
     li.prop('onBlur')();
 
-    expect(handler.mock.calls).toEqual([[0],[-1]]);
+    expect(handler.mock.calls).toEqual([[0], [-1]]);
   });
 
   it('should pass an edit handler to list item', () => {
@@ -130,13 +130,12 @@ describe('<List />', () => {
 
     const li = wrapper.find('ListItem');
 
-    li.prop('onChange')({target: {value: testValue}});
+    li.prop('onChange')({ target: { value: testValue } });
 
     expect(handler.mock.calls).toEqual([[0, testValue]]);
   });
 
   it('should pass a check handler to list item', () => {
-    const testValue = 'TestValue';
     const handler = jest.fn();
     const wrapper = shallow(
       <List

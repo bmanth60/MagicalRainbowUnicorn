@@ -40,8 +40,8 @@ describe('<ListItem />', () => {
         onBlur={emptyHandler}
         onChange={emptyHandler}
         onCheck={emptyHandler}
-        editable={true}
         text={testValue}
+        editable
       />,
     );
 
@@ -52,7 +52,7 @@ describe('<ListItem />', () => {
         onBlur: emptyHandler,
         onChange: emptyHandler,
         editable: true,
-        text: testValue
+        text: testValue,
       },
     ];
 

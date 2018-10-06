@@ -53,8 +53,8 @@ describe('<ListHeader />', () => {
         onToggle={() => {}}
         onEdit={() => {}}
         onDelete={() => {}}
-        editing={true}
         message={testValue}
+        editing
       />,
     );
 
@@ -62,7 +62,7 @@ describe('<ListHeader />', () => {
     const expected = [
       {
         editable: true,
-        text: testValue
+        text: testValue,
       },
     ];
 
@@ -89,7 +89,7 @@ describe('<ListHeader />', () => {
     // Call blur
     li.prop('onBlur')();
 
-    expect(handler.mock.calls).toEqual([[true],[false]]);
+    expect(handler.mock.calls).toEqual([[true], [false]]);
   });
 
   it('should pass an edit handler to list item content', () => {
@@ -107,7 +107,7 @@ describe('<ListHeader />', () => {
 
     const li = wrapper.find('ListItemContent');
 
-    li.prop('onChange')({target: {value: testValue}});
+    li.prop('onChange')({ target: { value: testValue } });
 
     expect(handler.mock.calls).toEqual([[testValue]]);
   });
