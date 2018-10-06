@@ -14,7 +14,7 @@ const Panel = styled(Paper)(theme => ({
 function Card({ children, style }) {
   return (
     <Panel style={style} elevation={1}>
-        {children}
+      {children}
     </Panel>
   );
 }

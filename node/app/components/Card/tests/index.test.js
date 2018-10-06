@@ -10,6 +10,7 @@ describe('<Card />', () => {
     console.error.mockClear();
 
     shallow(<Card>test</Card>);
+
     expect(console.error).not.toBeCalled();
   });
 
@@ -17,23 +18,24 @@ describe('<Card />', () => {
     console.error.mockClear();
 
     shallow(<Card />);
+
     expect(console.error).toBeCalled();
   });
 
   it('should have children', () => {
     const children = <h1>test</h1>;
-    const renderedComponent = shallow(<Card>{children}</Card>);
-    expect(renderedComponent.contains(children)).toEqual(true);
+    const wrapper = shallow(<Card>{children}</Card>);
+    expect(wrapper.contains(children)).toBeTruthy();
   });
 
   it('should adopt a style attribute', () => {
     const style = { background: 'blue' };
-    const renderedComponent = shallow(<Card style={style}>test</Card>);
-    expect(renderedComponent.prop('style')).toEqual(style);
+    const wrapper = shallow(<Card style={style}>test</Card>);
+    expect(wrapper.prop('style')).toBe(style);
   });
 
   it('should have an elevation', () => {
-    const renderedComponent = shallow(<Card>test</Card>);
-    expect(renderedComponent.prop('elevation')).toEqual(1);
+    const wrapper = shallow(<Card>test</Card>);
+    expect(wrapper.prop('elevation')).toBe(1);
   });
 });

@@ -1,11 +1,34 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import HomePage from '../index';
+import { Home } from '../index';
+import { initialState } from '../reducer';
 
-describe('<HomePage />', () => {
-  it('should render the page message', () => {
-    const renderedComponent = shallow(<HomePage />);
-    expect(renderedComponent.contains(<div />)).toEqual(true);
+console.error = jest.fn();
+
+describe('<Home />', () => {
+  it('should render without error', () => {
+    console.error.mockClear();
+
+    shallow(
+      <Home
+        selectedItem={-1}
+        selectedList={0}
+        listNameEdit={false}
+        lists={initialState.get('lists')}
+        item={initialState.getIn(['lists', 0])}
+        toggleChecklistItem={() => {}}
+        toggleChecklistName={() => {}}
+        checkChecklistItem={() => {}}
+        addChecklistItem={() => {}}
+        updateChecklistItem={() => {}}
+        addChecklist={() => {}}
+        deleteChecklist={() => {}}
+        updateChecklist={() => {}}
+        selectChecklist={() => {}}
+      />,
+    );
+
+    expect(console.error).not.toBeCalled();
   });
 });

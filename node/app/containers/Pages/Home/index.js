@@ -103,24 +103,24 @@ export class Home extends React.PureComponent {
 }
 
 Home.propTypes = {
-  selectedItem: PropTypes.number,
-  selectedList: PropTypes.number,
-  listNameEdit: PropTypes.bool,
-  lists: PropTypes.object,
-  item: PropTypes.object,
-  toggleChecklistItem: PropTypes.func,
-  checkChecklistItem: PropTypes.func,
-  addChecklistItem: PropTypes.func,
-  updateChecklistItem: PropTypes.func,
-  addChecklist: PropTypes.func,
-  deleteChecklist: PropTypes.func,
-  updateChecklist: PropTypes.func,
-  selectChecklist: PropTypes.func,
-  toggleChecklistName: PropTypes.func,
+  selectedItem: PropTypes.number.isRequired,
+  selectedList: PropTypes.number.isRequired,
+  listNameEdit: PropTypes.bool.isRequired,
+  lists: PropTypes.object.isRequired,
+  item: PropTypes.object.isRequired,
+  toggleChecklistItem: PropTypes.func.isRequired,
+  checkChecklistItem: PropTypes.func.isRequired,
+  addChecklistItem: PropTypes.func.isRequired,
+  updateChecklistItem: PropTypes.func.isRequired,
+  addChecklist: PropTypes.func.isRequired,
+  deleteChecklist: PropTypes.func.isRequired,
+  updateChecklist: PropTypes.func.isRequired,
+  selectChecklist: PropTypes.func.isRequired,
+  toggleChecklistName: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
-  const hpState = state.get('HomePage');
+  const hpState = state.get('Home');
   return {
     selectedItem: selectedItemSelector(hpState),
     selectedList: selectedListSelector(hpState),
@@ -146,7 +146,7 @@ const withConnect = connect(
 );
 
 const withReducer = injectReducer({
-  key: 'HomePage',
+  key: 'Home',
   reducer: homePageReducer,
 });
 
