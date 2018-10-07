@@ -25,27 +25,24 @@ const DrawerPaper = styled(Drawer)(theme => ({
 }));
 
 function ListSidebar({ onAdd, onSelect, selected, items }) {
-  const lists = items.map((item, index) => (
-    <ListSidebarItem
-      onClick={() => {
-        onSelect(index);
-      }}
-      selected={selected === index}
-      key={index * 1}
-      listId={index}
-      text={item.get('name')}
-    />
-  ));
+  let lists = [];
+  if (items) {
+    lists = items.map((item, index) => (
+      <ListSidebarItem
+        onClick={() => {
+          onSelect(index);
+        }}
+        selected={selected === index}
+        key={index}
+        text={item.get('name')}
+      />
+    ));
+  }
 
   return (
     <DrawerPaper variant="permanent">
       <List component="nav">
-        <ListItem
-          button
-          onClick={() => {
-            onAdd();
-          }}
-        >
+        <ListItem button onClick={onAdd}>
           <ListItemIcon>
             <AddCircleIcon />
           </ListItemIcon>

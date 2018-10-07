@@ -4,6 +4,8 @@ import { fromJS } from 'immutable';
 
 import List from '../index';
 
+/* eslint-disable no-console */
+
 console.error = jest.fn();
 
 describe('<List />', () => {

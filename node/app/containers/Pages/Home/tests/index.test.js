@@ -4,6 +4,8 @@ import { shallow } from 'enzyme';
 import { Home } from '../index';
 import { initialState } from '../reducer';
 
+/* eslint-disable no-console */
+
 console.error = jest.fn();
 
 describe('<Home />', () => {

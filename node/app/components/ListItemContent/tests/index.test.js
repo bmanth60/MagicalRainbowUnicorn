@@ -3,6 +3,8 @@ import { shallow } from 'enzyme';
 
 import ListItemContent from '../index';
 
+/* eslint-disable no-console */
+
 console.error = jest.fn();
 
 describe('<ListItemContent />', () => {
