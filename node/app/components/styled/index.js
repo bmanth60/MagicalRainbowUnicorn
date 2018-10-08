@@ -12,13 +12,17 @@ export default function styled(Component) {
         <Component className={classNames(classes.root, className)} {...other} />
       );
     }
+
     StyledComponent.propTypes = {
       classes: PropTypes.object.isRequired,
       className: PropTypes.string,
     };
 
-    const styles =
-      typeof s === 'function' ? theme => ({ root: s(theme) }) : { root: s };
+    let styles = { root: s };
+    if (typeof s === 'function') {
+      styles = theme => ({ root: s(theme) });
+    }
+
     return withStyles(styles, o)(StyledComponent);
   };
 }
