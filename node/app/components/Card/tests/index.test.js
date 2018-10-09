@@ -11,7 +11,7 @@ describe('<Card />', () => {
   it('should render without error', () => {
     console.error.mockClear();
 
-    shallow(<Card>test</Card>);
+    shallow(<Card>test</Card>).dive();
 
     expect(console.error).not.toBeCalled();
   });

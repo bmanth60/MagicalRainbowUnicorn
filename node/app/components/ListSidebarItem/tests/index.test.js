@@ -11,7 +11,13 @@ describe('<ListSidebarItem />', () => {
   it('should render without error', () => {
     console.error.mockClear();
 
-    shallow(<ListSidebarItem onClick={() => {}} text="" selected={false} />);
+    shallow(
+      <ListSidebarItem
+        onClick={() => {}}
+        text=""
+        selected
+      />
+    ).dive();
 
     expect(console.error).not.toBeCalled();
   });

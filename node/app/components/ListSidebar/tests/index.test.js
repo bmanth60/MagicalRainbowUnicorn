@@ -20,7 +20,7 @@ describe('<ListSidebar />', () => {
         selected={0}
         items={fromJS([])}
       />,
-    );
+    ).dive();
 
     expect(console.error).not.toBeCalled();
   });
