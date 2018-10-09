@@ -1,5 +1,5 @@
 # Makefile variables
-PROJECT_NAME=sample-app
+PROJECT_NAME=mru-ui
 TAG="bmanth60/${PROJECT_NAME}"
 DOCKERFILE_URL="https://raw.githubusercontent.com/excelWithBusiness/node-build/0.0.4/Dockerfile"
 

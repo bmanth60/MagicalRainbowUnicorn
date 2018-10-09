@@ -49,7 +49,8 @@ describe('styled hoc', () => {
       <Test className="test-class" data-tag="test" />,
     ).dive();
     const received = wrapper.html();
-    const expected = '<div class="StyledComponent-root-3 test-class" data-tag="test"></div>';
+    const expected =
+      '<div class="StyledComponent-root-3 test-class" data-tag="test"></div>';
 
     expect(received).toEqual(expected);
   });

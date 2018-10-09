@@ -4,12 +4,12 @@ volumes:
     driver: local
 
 services:
-  sample-app:
+  mru-ui:
     image: node:8.11.3
     working_dir: /usr/src/app
     command: make serve
     environment:
-      PROJECT_NAME: sample-app
+      PROJECT_NAME: mru-ui
       PROJECT_BUILD: dev
       NODE_ENV: debug
     volumes:
