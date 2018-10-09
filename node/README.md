@@ -29,7 +29,7 @@ If you see `PASS` then everything is fine.
 ### Developing
 
 ```
-make run ARGS="make serve"
+make run OPTS="-p 8000:3000" ARGS="make serve"
 ```
 
 Compiles and serves the application at port 3000. Changes in code will immediately trigger a recompile and display.
