@@ -1,0 +1,14 @@
+# Cruft
+.DS_Store
+npm-debug.log
+.idea
+
+# Hidden system files
+.tmp
+
+# Logs
+*.log
+
+# Docker
+docker-compose.override.yml
+Dockerfile

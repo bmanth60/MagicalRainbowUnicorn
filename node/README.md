@@ -23,7 +23,7 @@ Sets up the Docker Compose development environment, setup the vendor directory, 
 Then run:
 
 ```
-make run ARGS="make testv"
+make run args="make testv"
 ```
 
 If you see `PASS` then everything is fine.
@@ -31,32 +31,32 @@ If you see `PASS` then everything is fine.
 ### Developing
 
 ```
-make run OPTS="-p 8000:3000" ARGS="make serve"
+make run opts="-p 8000:3000" args="make serve"
 ```
 
 Compiles and serves the application at port 3000. Changes in code will immediately trigger a recompile and display.
 
 ```
-make run ARGS="make testx"
+make run args="make testx"
 ```
 
 You run this command after making a code change. This runs the development toolchain and the tests.
 
 ### Testing
 ```
-make run ARGS="make test"
+make run args="make test"
 ```
 
 Runs the tests
 
 ```
-make run ARGS="make testx"
+make run args="make testx"
 ```
 
 Runs development toolchain and then the tests
 
 ```
-make run ARGS="make cover"
+make run args="make cover"
 ```
 
 Run coverage report and compile into html in the reports directory.
@@ -64,25 +64,25 @@ Run coverage report and compile into html in the reports directory.
 ### Node
 
 ```
-make run ARGS="make compile"
+make run args="make compile"
 ```
 
 Compile the app.
 
 ```
-make run ARGS="make dep"
+make run args="make dep"
 ```
 
 Sync packages from the yarn lock dependency file.
 
 ```
-make run ARGS="make depinfo"
+make run args="make depinfo"
 ```
 
 Show information about the status of the dependencies.
 
 ```
-make run ARGS="make check"
+make run args="make check"
 ```
 
 Run the automated formatter, `prettier`, and the linter.
