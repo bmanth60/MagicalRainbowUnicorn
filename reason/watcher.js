@@ -10,7 +10,7 @@ var LAST_SUCCESS_BUILD_STAMP = localStorage.getItem('LAST_SUCCESS_BUILD_STAMP' |
 // package.json's `start` script's `bsb -ws _` means it'll pipe build events
 // through a websocket connection to a default port of 9999. This is
 // configurable, e.g. `-ws 5000`
-var webSocketPort = 9999;
+var webSocketPort = 8001;
 
 function setUpWebSocket() {
   if (websocketReloader == null || websocketReloader.readyState !== 1) {

@@ -16,3 +16,4 @@ services:
       - deps:/usr/src/app/node_modules
     expose:
       - 8000
+      - 8001
