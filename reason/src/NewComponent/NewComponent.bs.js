@@ -1,8 +1,8 @@
-'use strict';
 
-var Curry = require("bs-platform/lib/js/curry.js");
-var React = require("react");
-var Caml_format = require("bs-platform/lib/js/caml_format.js");
+
+import * as Curry from "bs-platform/lib/es6/curry.js";
+import * as React from "react";
+import * as Caml_format from "bs-platform/lib/es6/caml_format.js";
 
 function padNumber(numString) {
   if (Caml_format.caml_int_of_string(numString) < 10) {
@@ -33,9 +33,9 @@ var Button = {
 };
 
 var updateTitle = (
-    function updateTitle(remaining) {
-      document.title = "⏰ " + remaining + " ⏰";
-    });
+  function updateTitle(remaining) {
+    document.title = "⏰ " + remaining + " ⏰";
+  });
 
 function NewComponent(Props) {
   var match = React.useReducer((function (state, action) {
@@ -117,9 +117,12 @@ function NewComponent(Props) {
 
 var make = NewComponent;
 
-exports.padNumber = padNumber;
-exports.formatTime = formatTime;
-exports.Button = Button;
-exports.updateTitle = updateTitle;
-exports.make = make;
+export {
+  padNumber ,
+  formatTime ,
+  Button ,
+  updateTitle ,
+  make ,
+  
+}
 /* updateTitle Not a pure module */

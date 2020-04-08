@@ -1,7 +1,7 @@
-'use strict';
 
-var Curry = require("bs-platform/lib/js/curry.js");
-var React = require("react");
+
+import * as Curry from "bs-platform/lib/es6/curry.js";
+import * as React from "react";
 
 function BlinkingGreeting(Props) {
   var children = Props.children;
@@ -34,5 +34,8 @@ function BlinkingGreeting(Props) {
 
 var make = BlinkingGreeting;
 
-exports.make = make;
+export {
+  make ,
+  
+}
 /* react Not a pure module */

@@ -1,8 +1,8 @@
-'use strict';
 
-var Curry = require("bs-platform/lib/js/curry.js");
-var React = require("react");
-var Belt_Array = require("bs-platform/lib/js/belt_Array.js");
+
+import * as Curry from "bs-platform/lib/es6/curry.js";
+import * as React from "react";
+import * as Belt_Array from "bs-platform/lib/es6/belt_Array.js";
 
 function FetchedDogPictures(Props) {
   var match = React.useState((function () {
@@ -61,5 +61,8 @@ function FetchedDogPictures(Props) {
 
 var make = FetchedDogPictures;
 
-exports.make = make;
+export {
+  make ,
+  
+}
 /* react Not a pure module */

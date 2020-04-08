@@ -1,7 +1,7 @@
-'use strict';
 
-var Curry = require("bs-platform/lib/js/curry.js");
-var React = require("react");
+
+import * as Curry from "bs-platform/lib/es6/curry.js";
+import * as React from "react";
 
 var leftButtonStyle = {
   width: "48px",
@@ -47,9 +47,12 @@ function ReducerFromReactJSDocs(Props) {
 
 var make = ReducerFromReactJSDocs;
 
-exports.leftButtonStyle = leftButtonStyle;
-exports.rightButtonStyle = rightButtonStyle;
-exports.initialState = initialState;
-exports.reducer = reducer;
-exports.make = make;
+export {
+  leftButtonStyle ,
+  rightButtonStyle ,
+  initialState ,
+  reducer ,
+  make ,
+  
+}
 /* react Not a pure module */

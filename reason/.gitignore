@@ -2,4 +2,4 @@
 .bsb.lock
 /lib/bs/
 /node_modules/
-/bundleOutput/
+/build/

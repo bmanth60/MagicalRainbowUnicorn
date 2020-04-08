@@ -1,8 +1,11 @@
-'use strict';
 
-var ReactJSCard = require("./ReactJSCard");
+
+import * as ReactJSCard from "./ReactJSCard";
 
 var make = ReactJSCard;
 
-exports.make = make;
+export {
+  make ,
+  
+}
 /* make Not a pure module */

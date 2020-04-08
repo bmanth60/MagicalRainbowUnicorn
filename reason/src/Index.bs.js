@@ -1,46 +1,12 @@
-'use strict';
 
-var React = require("react");
-var ReactDom = require("react-dom");
-var NewComponent$ReasonReactExamples = require("./NewComponent/NewComponent.bs.js");
-var ExampleStyles$ReasonReactExamples = require("./ExampleStyles.bs.js");
-var BlinkingGreeting$ReasonReactExamples = require("./BlinkingGreeting/BlinkingGreeting.bs.js");
-var FetchedDogPictures$ReasonReactExamples = require("./FetchedDogPictures/FetchedDogPictures.bs.js");
-var ReducerFromReactJSDocs$ReasonReactExamples = require("./ReducerFromReactJSDocs/ReducerFromReactJSDocs.bs.js");
-var ReasonUsingJSUsingReason$ReasonReactExamples = require("./ReasonUsingJSUsingReason/ReasonUsingJSUsingReason.bs.js");
 
-var style = document.createElement("style");
+import * as React from "react";
+import * as ReactDOMRe from "reason-react/src/ReactDOMRe.js";
+import * as App$ReasonReactExamples from "./app.bs.js";
 
-document.head.appendChild(style);
+ReactDOMRe.renderToElementWithId(React.createElement(App$ReasonReactExamples.make, { }), "root");
 
-style.innerHTML = ExampleStyles$ReasonReactExamples.style;
-
-function makeContainer(text) {
-  var container = document.createElement("div");
-  container.className = "container";
-  var title = document.createElement("div");
-  title.className = "containerTitle";
-  title.innerText = text;
-  var content = document.createElement("div");
-  content.className = "containerContent";
-  container.appendChild(title);
-  container.appendChild(content);
-  document.body.appendChild(container);
-  return content;
+export {
+  
 }
-
-ReactDom.render(React.createElement(BlinkingGreeting$ReasonReactExamples.make, {
-          children: "Hello!"
-        }), makeContainer("Blinking Greeting"));
-
-ReactDom.render(React.createElement(ReducerFromReactJSDocs$ReasonReactExamples.make, { }), makeContainer("Reducer From ReactJS Docs"));
-
-ReactDom.render(React.createElement(FetchedDogPictures$ReasonReactExamples.make, { }), makeContainer("Fetched Dog Pictures"));
-
-ReactDom.render(React.createElement(ReasonUsingJSUsingReason$ReasonReactExamples.make, { }), makeContainer("Reason Using JS Using Reason"));
-
-ReactDom.render(React.createElement(NewComponent$ReasonReactExamples.make, { }), makeContainer("New component"));
-
-exports.style = style;
-exports.makeContainer = makeContainer;
-/* style Not a pure module */
+/*  Not a pure module */
