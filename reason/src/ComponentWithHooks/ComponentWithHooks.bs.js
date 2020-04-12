@@ -20,7 +20,7 @@ function formatTime(seconds) {
   return minsString + (":" + secondsString);
 }
 
-function NewComponent$Button(Props) {
+function ComponentWithHooks$Button(Props) {
   var label = Props.label;
   var onClick = Props.onClick;
   return React.createElement("button", {
@@ -29,7 +29,7 @@ function NewComponent$Button(Props) {
 }
 
 var Button = {
-  make: NewComponent$Button
+  make: ComponentWithHooks$Button
 };
 
 var updateTitle = (
@@ -37,7 +37,7 @@ var updateTitle = (
     document.title = "⏰ " + remaining + " ⏰";
   });
 
-function NewComponent(Props) {
+function ComponentWithHooks(Props) {
   var match = React.useReducer((function (state, action) {
           switch (action) {
             case /* Start */0 :
@@ -97,17 +97,17 @@ function NewComponent(Props) {
                     fontSize: "42px",
                     margin: "16px 0"
                   }
-                }, formatTime(state[/* seconds */0])), match$1 ? React.createElement(NewComponent$Button, {
+                }, formatTime(state[/* seconds */0])), match$1 ? React.createElement(ComponentWithHooks$Button, {
                     label: "STOP",
                     onClick: (function (_event) {
                         return Curry._1(dispatch, /* Stop */1);
                       })
-                  }) : React.createElement(React.Fragment, undefined, React.createElement(NewComponent$Button, {
+                  }) : React.createElement(React.Fragment, undefined, React.createElement(ComponentWithHooks$Button, {
                         label: "START",
                         onClick: (function (_event) {
                             return Curry._1(dispatch, /* Start */0);
                           })
-                      }), React.createElement(NewComponent$Button, {
+                      }), React.createElement(ComponentWithHooks$Button, {
                         label: "RESET",
                         onClick: (function (_event) {
                             return Curry._1(dispatch, /* Reset */2);
@@ -115,7 +115,7 @@ function NewComponent(Props) {
                       })));
 }
 
-var make = NewComponent;
+var make = ComponentWithHooks;
 
 export {
   padNumber ,
