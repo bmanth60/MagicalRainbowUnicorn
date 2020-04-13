@@ -11,6 +11,7 @@ let make = () => {
             <ReasonUsingJSUsingReason />
             <ReducerFromReactJSDocs />
             <MaterialComponent />
+            <Card><span>{ReasonReact.string("test")}</span></Card>
         </div>
     </div>;
 };
