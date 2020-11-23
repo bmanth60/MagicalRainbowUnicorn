@@ -1,9 +1,9 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
 # Cruft
 .DS_Store
 npm-debug.log
 .idea
-
-# Hidden system files
 .tmp
 
 # Logs
@@ -12,3 +12,17 @@ npm-debug.log
 # Docker
 docker-compose.override.yml
 Dockerfile
+
+# dependencies
+node_modules
+.pnp
+.pnp.js
+
+# testing
+coverage
+
+# production
+build
+
+# misc
+*.local
