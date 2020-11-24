@@ -1,7 +1,7 @@
 {
   "name": "reason-react-examples",
   "reason": {
-    "react-jsx": 3,
+    "react-jsx": 3
   },
   "sources": {
     "dir" : "src",
@@ -20,5 +20,6 @@
     "bs-css-emotion",
     "@jsiebern/bs-material-ui"
   ],
+  "ppx-flags": ["@jsiebern/bs-material-ui-ppx/ppx"],
   "refmt": 3
 }

@@ -1,5 +1,6 @@
 [@react.component]
 let make = () => {
+    <MaterialUi_ThemeProvider theme={MaterialUi_Theme.create(MaterialUi_ThemeOptions.make())}>
     <div>
         <div>
             <h1>{ReasonReact.string("New Component")}</h1>
@@ -13,5 +14,6 @@ let make = () => {
             <MaterialComponent />
             <Card><span>{ReasonReact.string("test")}</span></Card>
         </div>
-    </div>;
-};
+    </div>
+    </MaterialUi_ThemeProvider>
+}

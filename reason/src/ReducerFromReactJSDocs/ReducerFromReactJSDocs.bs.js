@@ -13,13 +13,19 @@ var rightButtonStyle = {
   borderRadius: "0px 4px 4px 0px"
 };
 
-var initialState = /* record */[/* count */0];
+var initialState = {
+  count: 0
+};
 
 function reducer(state, action) {
   if (action) {
-    return /* record */[/* count */state[/* count */0] - 1 | 0];
+    return {
+            count: state.count - 1 | 0
+          };
   } else {
-    return /* record */[/* count */state[/* count */0] + 1 | 0];
+    return {
+            count: state.count + 1 | 0
+          };
   }
 }
 
@@ -32,7 +38,7 @@ function ReducerFromReactJSDocs(Props) {
                 alignItems: "center",
                 justifyContent: "space-between"
               }
-            }, React.createElement("div", undefined, "Count: ", String(match[0][/* count */0])), React.createElement("div", undefined, React.createElement("button", {
+            }, React.createElement("div", undefined, "Count: ", String(match[0].count)), React.createElement("div", undefined, React.createElement("button", {
                       style: leftButtonStyle,
                       onClick: (function (_event) {
                           return Curry._1(dispatch, /* Decrement */1);

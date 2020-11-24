@@ -32,8 +32,7 @@ var Button = {
   make: ComponentWithHooks$Button
 };
 
-var updateTitle = (
-  function updateTitle(remaining) {
+var updateTitle = (function updateTitle(remaining) {
     document.title = "⏰ " + remaining + " ⏰";
   });
 
@@ -41,37 +40,36 @@ function ComponentWithHooks(Props) {
   var match = React.useReducer((function (state, action) {
           switch (action) {
             case /* Start */0 :
-                return /* record */[
-                        /* seconds */state[/* seconds */0],
-                        /* isTicking */true
-                      ];
+                return {
+                        seconds: state.seconds,
+                        isTicking: true
+                      };
             case /* Stop */1 :
-                return /* record */[
-                        /* seconds */state[/* seconds */0],
-                        /* isTicking */false
-                      ];
+                return {
+                        seconds: state.seconds,
+                        isTicking: false
+                      };
             case /* Reset */2 :
-                return /* record */[
-                        /* seconds */30,
-                        /* isTicking */state[/* isTicking */1]
-                      ];
+                return {
+                        seconds: 30,
+                        isTicking: state.isTicking
+                      };
             case /* Tick */3 :
-                var match = state[/* isTicking */1] && state[/* seconds */0] > 0;
-                if (match) {
-                  Curry._1(updateTitle, formatTime(state[/* seconds */0] - 1 | 0));
-                  return /* record */[
-                          /* seconds */state[/* seconds */0] - 1 | 0,
-                          /* isTicking */state[/* isTicking */1]
-                        ];
+                if (state.isTicking && state.seconds > 0) {
+                  updateTitle(formatTime(state.seconds - 1 | 0));
+                  return {
+                          seconds: state.seconds - 1 | 0,
+                          isTicking: state.isTicking
+                        };
                 } else {
                   return state;
                 }
             
           }
-        }), /* record */[
-        /* seconds */30,
-        /* isTicking */false
-      ]);
+        }), {
+        seconds: 30,
+        isTicking: false
+      });
   var dispatch = match[1];
   var state = match[0];
   React.useEffect((function () {
@@ -80,10 +78,9 @@ function ComponentWithHooks(Props) {
                 }), 1000);
           return (function (param) {
                     clearInterval(timerId);
-                    return /* () */0;
+                    
                   });
-        }), ([]));
-  var match$1 = state[/* isTicking */1];
+        }), []);
   return React.createElement("div", {
               style: {
                 border: "1px solid black",
@@ -97,7 +94,7 @@ function ComponentWithHooks(Props) {
                     fontSize: "42px",
                     margin: "16px 0"
                   }
-                }, formatTime(state[/* seconds */0])), match$1 ? React.createElement(ComponentWithHooks$Button, {
+                }, formatTime(state.seconds)), state.isTicking ? React.createElement(ComponentWithHooks$Button, {
                     label: "STOP",
                     onClick: (function (_event) {
                         return Curry._1(dispatch, /* Stop */1);
@@ -125,4 +122,4 @@ export {
   make ,
   
 }
-/* updateTitle Not a pure module */
+/* react Not a pure module */

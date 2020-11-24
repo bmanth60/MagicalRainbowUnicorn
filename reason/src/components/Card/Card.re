@@ -9,8 +9,8 @@ module Styles = {
 [@react.component]
 let make = (~children: option(ReasonReact.reactElement)=?) => {
     MaterialUi.(
-        <Paper className=Styles.card elevation=`Int(1)>
+        <Paper className=Styles.card elevation={Number.int(1)}>
             {children}
         </Paper>
-  );
-};
+  )
+}
