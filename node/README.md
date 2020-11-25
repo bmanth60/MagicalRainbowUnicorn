@@ -2,7 +2,7 @@
 
 UI for todo list
 
-![alt text](https://github.com/bmanth60/MagicalRainbowUnicorn/blob/master/sample/mrui-ui.png?raw=true, "screenshot")
+![alt text](https://github.com/bmanth60/MagicalRainbowUnicorn/blob/main/sample/mrui-ui.png?raw=true, "screenshot")
 
 ## Development
 
