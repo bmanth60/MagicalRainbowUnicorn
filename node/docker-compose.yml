@@ -4,7 +4,7 @@ volumes:
     driver: local
 
 services:
-  mru-ui:
+  mru:
     image: node:13.7.0
     working_dir: /usr/src/app
     command: make serve

@@ -1,10 +1,10 @@
 # Makefile variables
-PROJECT_NAME=mru-ui
+PROJECT_NAME=mru
 TAG="bmanth60/${PROJECT_NAME}"
 DOCKERFILE_URL="https://raw.githubusercontent.com/excelWithBusiness/node-build/0.0.4/Dockerfile"
 
 # Run on docker
-RUN = docker-compose run ${opts} --name ${PROJECT_NAME}_$(shell od -An -N1 -i /dev/random | tr -dc '0-9') --rm ${PROJECT_NAME}
+RUN = docker-compose run ${opts} --rm ${PROJECT_NAME}
 
 #
 ## Basic commands with docker
