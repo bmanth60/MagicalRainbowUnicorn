@@ -1,0 +1,6 @@
+{
+    "exec": "bsb -make-world",
+    "ext": "re,html",
+    "watch": "src",
+    "verbose": true
+}

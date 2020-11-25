@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "build": "bsb -make-world",
-    "start": "bsb -make-world -w",
+    "start": "nodemon",
     "clean": "bsb -clean-world",
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack -w",
@@ -13,13 +13,13 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "nodemon": "^2.0.6",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "reason-react": "^0.9.1"
   },
   "devDependencies": {
     "@jsiebern/bs-material-ui": "^2.0.2",
-    "@jsiebern/bs-material-ui-ppx": "^2.0.1",
     "@material-ui/core": "^4.11.0",
     "bs-css-emotion": "^2.2.0",
     "bs-platform": "^8.3.3",

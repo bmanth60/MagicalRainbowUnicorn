@@ -20,6 +20,5 @@
     "bs-css-emotion",
     "@jsiebern/bs-material-ui"
   ],
-  "ppx-flags": ["@jsiebern/bs-material-ui-ppx/ppx"],
   "refmt": 3
 }

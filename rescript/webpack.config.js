@@ -4,9 +4,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const outputDir = path.join(__dirname, 'build/');
 
 const isProd = process.env.NODE_ENV === 'production';
+const sockPort = process.env.WDS_SOCKET_PORT;
 
 module.exports = {
-  entry: './src/index.bs.js',
+  entry: './src/Index.bs.js',
   mode: isProd ? 'production' : 'development',
   output: {
     path: outputDir,
@@ -14,7 +15,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'src/index.html',
+      template: './src/index.html',
       inject: false
     })
   ],
@@ -23,6 +24,10 @@ module.exports = {
     contentBase: outputDir,
     port: process.env.PORT || 8000,
     historyApiFallback: true,
-    host: '0.0.0.0'
+    host: '0.0.0.0',
+    watchOptions: {
+      poll: 1000 // Check for changes every second
+    },
+    sockPort
   }
 };

@@ -11,6 +11,8 @@ services:
       PROJECT_NAME: mru
       PROJECT_BUILD: dev
       NODE_ENV: development
+      WDS_SOCKET_PORT: 8000
+      CHOKIDAR_USEPOLLING: "true"
     volumes:
       - .:/usr/src/app
       - deps:/usr/src/app/node_modules
