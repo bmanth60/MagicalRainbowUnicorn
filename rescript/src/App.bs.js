@@ -1,9 +1,9 @@
 
 
 import * as React from "react";
-import * as Styles from "@material-ui/core/styles";
 import * as Card$ReasonReactExamples from "./components/Card/Card.bs.js";
 import * as MaterialUi_ThemeProvider from "@jsiebern/bs-material-ui/src/MaterialUi_ThemeProvider.bs.js";
+import * as Theme$ReasonReactExamples from "./Theme.bs.js";
 import * as BlinkingGreeting$ReasonReactExamples from "./components/BlinkingGreeting/BlinkingGreeting.bs.js";
 import * as MaterialComponent$ReasonReactExamples from "./components/MaterialComponent/MaterialComponent.bs.js";
 import * as ComponentWithHooks$ReasonReactExamples from "./components/ComponentWithHooks/ComponentWithHooks.bs.js";
@@ -18,7 +18,7 @@ function App(Props) {
                           }), React.createElement(FetchedDogPictures$ReasonReactExamples.make, {}), React.createElement(ReasonUsingJSUsingReason$ReasonReactExamples.make, {}), React.createElement(ReducerFromReactJSDocs$ReasonReactExamples.make, {}), React.createElement(MaterialComponent$ReasonReactExamples.make, {}), React.createElement(Card$ReasonReactExamples.make, {
                             children: React.createElement("span", undefined, "test")
                           }))),
-              theme: Styles.createMuiTheme({})
+              theme: Theme$ReasonReactExamples.theme
             });
 }
 

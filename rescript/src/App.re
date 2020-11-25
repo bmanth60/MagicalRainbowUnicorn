@@ -1,6 +1,6 @@
 [@react.component]
 let make = () => {
-    <MaterialUi_ThemeProvider theme={MaterialUi_Theme.create(MaterialUi_ThemeOptions.make())}>
+    <MaterialUi_ThemeProvider theme={Theme.theme}>
     <div>
         <div>
             <h1>{ReasonReact.string("New Component")}</h1>

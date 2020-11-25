@@ -8,7 +8,8 @@ function MaterialComponent(Props) {
               children: React.createElement(Core.Tabs, {
                     children: null,
                     indicatorColor: "primary",
-                    textColor: "primary"
+                    textColor: "primary",
+                    value: 0
                   }, React.createElement(Core.Tab, {
                         label: "Active"
                       }), React.createElement(Core.Tab, {

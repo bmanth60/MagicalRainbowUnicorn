@@ -1,8 +1,9 @@
 module Styles = {
-    open Css;
+    open Css
     let card = style([
         backgroundClip(paddingBox),
         border(px(1), solid, transparent),
+        padding(px(Theme.theme.spacing(1))),
     ])
 }
 
