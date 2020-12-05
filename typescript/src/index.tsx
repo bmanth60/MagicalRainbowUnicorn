@@ -1,14 +1,27 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import './index.css'
 
-import App from './pages/_App'
 import reportWebVitals from './utils/reportWebVitals'
+
+import App from './pages/_App'
+import Intro from './pages/Intro'
+import Edit from './pages/Edit'
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        <Router>
+            <Switch>
+                <Route exact path='/'>
+                    <App component={Intro} />
+                </Route>
+                <Route exact path='/edit'>
+                    <App component={Edit} />
+                </Route>
+            </Switch>
+        </Router>
     </React.StrictMode>,
     document.getElementById('root')
 )

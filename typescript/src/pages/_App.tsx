@@ -3,9 +3,6 @@ import styled from '@emotion/styled'
 import { ThemeProvider } from '@emotion/react'
 import { createMuiTheme, ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
 
-import SpinningLogo from '../components/SpinningLogo'
-import EmotionCard from '../components/EmotionCard'
-
 const customTheme = createMuiTheme({
     palette: {
         primary: {
@@ -33,24 +30,16 @@ const Container = styled.div`
     }
 `
 
-function App() {
+interface AppProps {
+    component: React.ComponentType<any>
+}
+
+function App({ component: Component }: AppProps) {
     return (
         <MuiThemeProvider theme={customTheme}>
             <ThemeProvider theme={customTheme}>
                 <Container>
-                    <header className='App-header'>
-                        <SpinningLogo />
-                        <EmotionCard>
-                            <a
-                                className='App-link'
-                                href='https://reactjs.org'
-                                target='_blank'
-                                rel='noopener noreferrer'
-                            >
-                                Learn React NOW!!
-                            </a>
-                        </EmotionCard>
-                    </header>
+                    <Component />
                 </Container>
             </ThemeProvider>
         </MuiThemeProvider>
