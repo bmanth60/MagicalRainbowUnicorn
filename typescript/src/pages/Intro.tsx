@@ -1,17 +1,20 @@
 import React from 'react'
 
 import SpinningLogo from '../components/SpinningLogo'
-import EmotionCard from '../components/EmotionCard'
+import Card from '../components/Card'
+import List from '../components/List'
 
 function Intro() {
     return (
         <header className='App-header'>
             <SpinningLogo />
-            <EmotionCard>
+            <List>
+            <Card>
                 <a className='App-link' href='https://reactjs.org' target='_blank' rel='noopener noreferrer'>
                     Learn React NOW!!
                 </a>
-            </EmotionCard>
+            </Card>
+            </List>
         </header>
     )
 }
