@@ -12,11 +12,15 @@ const styles = (theme: Theme) => ({
     }),
 })
 
-export default function Card({ children }: PropsWithChildren<{}>) {
+interface CardProps {
+    className?: string
+}
+
+export default function Card({ children, className }: PropsWithChildren<CardProps>) {
     const theme = useTheme()
     const classes = styles(theme)
     return (
-        <Paper css={classes.root} elevation={1}>
+        <Paper css={classes.root} className={className} elevation={1}>
             {children}
         </Paper>
     )
