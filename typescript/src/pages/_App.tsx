@@ -3,6 +3,8 @@ import styled from '@emotion/styled'
 import { ThemeProvider } from '@emotion/react'
 import { createMuiTheme, ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
 
+import { Provider as AppProvider } from '../context/app'
+
 const customTheme = createMuiTheme({
     palette: {
         primary: {
@@ -36,13 +38,15 @@ interface AppProps {
 
 function App({ component: Component }: AppProps) {
     return (
-        <MuiThemeProvider theme={customTheme}>
-            <ThemeProvider theme={customTheme}>
-                <Container>
-                    <Component />
-                </Container>
-            </ThemeProvider>
-        </MuiThemeProvider>
+        <AppProvider value={{ locale: 'en' }}>
+            <MuiThemeProvider theme={customTheme}>
+                <ThemeProvider theme={customTheme}>
+                    <Container>
+                        <Component />
+                    </Container>
+                </ThemeProvider>
+            </MuiThemeProvider>
+        </AppProvider>
     )
 }
 

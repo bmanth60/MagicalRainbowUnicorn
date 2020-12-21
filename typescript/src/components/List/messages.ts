@@ -1,4 +1,4 @@
-import {messagesInLocale} from '../../utils/i18n'
+import { messagesInLocale } from '../../utils/i18n'
 
 interface Messages {
     add: string
