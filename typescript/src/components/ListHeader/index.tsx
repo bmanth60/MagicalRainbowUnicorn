@@ -16,7 +16,7 @@ const styles = () => ({
     header: css({
         fontFamily: "'Shadows Into Light', cursive",
         position: 'absolute',
-        marginLeft: `${drawerWidth}px`,
+        paddingLeft: `${drawerWidth}px`,
         width: `calc(100% - ${drawerWidth}px)`,
         '& input': {
             color: 'white',
@@ -53,6 +53,7 @@ export default function ListHeader({ onToggle, onEdit, onDelete, editing, messag
                                 variant: 'h4',
                                 color: 'inherit',
                                 noWrap: true,
+                                align: 'left',
                             }}
                             editable={editing}
                             text={message}

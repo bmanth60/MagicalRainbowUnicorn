@@ -29,7 +29,7 @@ export default function ListItemContent({
         return (
             <TextField
                 fullWidth
-                margin='normal'
+                margin='none'
                 onChange={onChange}
                 onBlur={onBlur}
                 onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -45,7 +45,7 @@ export default function ListItemContent({
 
     return (
         <Typography {...typographyProps} onClick={onClick}>
-            {text}
+            {text || 'no name'}
         </Typography>
     )
 }

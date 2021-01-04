@@ -20,7 +20,7 @@ const styles = (theme: Theme) => ({
         [theme.breakpoints.up('md')]: {
             position: 'relative',
         },
-        '& div': {
+        '> div': {
             width: `${drawerWidth}px`,
         },
     }),

@@ -8,12 +8,12 @@ import ListItemText from '@material-ui/core/ListItemText'
 import ListIcon from '@material-ui/icons/List'
 
 const styles = (theme: Theme) => ({
-    listItem: css({
-        backgroundColor: theme.palette.primary.main,
+    listItem: css`
+        background-color: ${theme.palette.primary.main} !important;
         '& span, svg': {
-            color: theme.palette.common.white,
-        },
-    }),
+            color: ${theme.palette.common.white};
+        }
+    `,
 })
 
 interface ListSidebarItemProps {

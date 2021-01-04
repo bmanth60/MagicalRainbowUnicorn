@@ -29,7 +29,7 @@ export default function ListItem({ onCheck, onClick, onBlur, onChange, editable,
                         onClick={onClick}
                         onBlur={onBlur}
                         onChange={onChange}
-                        typographyProps={{ style: { fontSize: '1rem' } }}
+                        typographyProps={{ style: { fontSize: '1rem' }, align: 'left' }}
                         editable={editable}
                         text={text}
                     />

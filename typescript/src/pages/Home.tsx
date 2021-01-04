@@ -58,7 +58,7 @@ const emptyList = {
 function reducer(state: State, action: Action): State {
     switch (action.type) {
         case 'toggle_checklist_name':
-            state.editing = !!state.editing
+            state.editing = action.isEditing
             return { ...state }
         case 'delete_checklist_item':
             if (state.lists[state.selectedList]) {
@@ -76,7 +76,7 @@ function reducer(state: State, action: Action): State {
             }
             return { ...state }
         case 'add_checklist':
-            state.lists.push({ ...emptyList })
+            state.lists.push({ ...emptyList, items: [] })
             state.selectedList = state.lists.length - 1
             return { ...state }
         case 'update_checklist':
