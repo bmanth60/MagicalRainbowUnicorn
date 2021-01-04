@@ -7,18 +7,14 @@ import './index.css'
 import reportWebVitals from './utils/reportWebVitals'
 
 import App from './pages/_App'
-import Intro from './pages/Intro'
-import Edit from './pages/Edit'
+import Home from './pages/Home'
 
 ReactDOM.render(
     <React.StrictMode>
         <Router>
             <Switch>
                 <Route exact path='/'>
-                    <App component={Intro} />
-                </Route>
-                <Route exact path='/edit'>
-                    <App component={Edit} />
+                    <App component={Home} />
                 </Route>
             </Switch>
         </Router>

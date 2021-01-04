@@ -3,7 +3,7 @@ import React from 'react'
 import Typography, { TypographyProps } from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 
-interface ListHeaderProps {
+export interface ListItemContentContext {
     onClick: (e: React.MouseEvent<HTMLInputElement>) => void
     onBlur: (
         e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement> | React.KeyboardEvent<HTMLInputElement>
@@ -11,6 +11,9 @@ interface ListHeaderProps {
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
     editable: boolean
     text: string
+}
+
+interface ListItemContentProps extends ListItemContentContext {
     typographyProps: TypographyProps
 }
 
@@ -21,7 +24,7 @@ export default function ListItemContent({
     editable,
     text,
     typographyProps,
-}: ListHeaderProps) {
+}: ListItemContentProps) {
     if (editable) {
         return (
             <TextField
