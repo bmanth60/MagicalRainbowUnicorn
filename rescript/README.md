@@ -53,3 +53,7 @@ mv UNUSED_webpack.config.js webpack.config.js
 ./node_modules/.bin/webpack
 open indexProduction.html
 ```
+
+# More
+
+- See https://medium.com/swlh/learn-rescript-a-safer-way-to-write-javascript-part-1-e0b56d447c44 for more information on rescript
