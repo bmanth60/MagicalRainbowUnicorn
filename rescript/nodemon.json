@@ -1,6 +1,6 @@
 {
-    "exec": "bsb -make-world",
-    "ext": "re,html",
+    "exec": "bsb -make-world || exit 1",
+    "ext": "re,rei,html,res,resi,json",
     "watch": "src",
     "verbose": true
 }
