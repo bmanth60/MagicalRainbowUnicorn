@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react'
 import React from 'react'
+import { useRecoilState } from 'recoil'
 
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -9,6 +10,8 @@ import IconButton from '@material-ui/core/IconButton'
 import DeleteIcon from '@material-ui/icons/Delete'
 
 import ListItemContent from '../ListItemContent'
+
+import { listState } from '../../utils/states'
 
 const drawerWidth = 300
 
@@ -32,8 +35,10 @@ interface ListHeaderProps {
     message: string
 }
 
-export default function ListHeader({ onToggle, onEdit, onDelete, editing, message }: ListHeaderProps) {
+export default function ListHeader({ onToggle, onDelete, editing }: ListHeaderProps) {
     const classes = styles()
+    const [text, setText] = useRecoilState(listState)
+
     return (
         <AppBar css={classes.header}>
             <Toolbar>
@@ -47,7 +52,7 @@ export default function ListHeader({ onToggle, onEdit, onDelete, editing, messag
                                 onToggle(false)
                             }}
                             onChange={(e) => {
-                                onEdit(e.target.value)
+                                setText(e.target.value)
                             }}
                             typographyProps={{
                                 variant: 'h4',
@@ -56,7 +61,7 @@ export default function ListHeader({ onToggle, onEdit, onDelete, editing, messag
                                 align: 'left',
                             }}
                             editable={editing}
-                            text={message}
+                            text={text}
                         />
                     </Grid>
                     <Grid item xs={1}>

@@ -36,14 +36,13 @@ interface ListSidebarProps {
 export default function ListSidebar({ onAdd, onSelect, selected, items }: ListSidebarProps) {
     let lists: React.ReactElement<typeof ListSidebarItem>[] = []
     if (items) {
-        lists = items.map((item, index) => (
+        lists = items.map((_item, index) => (
             <ListSidebarItem
                 onClick={() => {
                     onSelect(index)
                 }}
                 selected={selected === index}
                 key={index}
-                text={item.name}
             />
         ))
     }

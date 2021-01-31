@@ -2,6 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { ThemeProvider } from '@emotion/react'
 import { createMuiTheme, ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
+import { RecoilRoot } from 'recoil'
 
 import { Provider as AppProvider } from '../context/app'
 
@@ -38,15 +39,17 @@ interface AppProps {
 
 function App({ component: Component }: AppProps) {
     return (
-        <AppProvider value={{ locale: 'en' }}>
-            <MuiThemeProvider theme={customTheme}>
-                <ThemeProvider theme={customTheme}>
-                    <Container>
-                        <Component />
-                    </Container>
-                </ThemeProvider>
-            </MuiThemeProvider>
-        </AppProvider>
+        <RecoilRoot>
+            <AppProvider value={{ locale: 'en' }}>
+                <MuiThemeProvider theme={customTheme}>
+                    <ThemeProvider theme={customTheme}>
+                        <Container>
+                            <Component />
+                        </Container>
+                    </ThemeProvider>
+                </MuiThemeProvider>
+            </AppProvider>
+        </RecoilRoot>
     )
 }
 
