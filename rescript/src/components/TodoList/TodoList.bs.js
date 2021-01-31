@@ -55,7 +55,7 @@ function TodoList(Props) {
                                         fullWidth: true,
                                         placeholder: "test place holder",
                                         onKeyPress: (e => {
-                                    if (e.key === "return") {
+                                    if (e.key === "Enter") {
                                         onAdd(e.target.value)
                                     }
                                 })

@@ -34,7 +34,7 @@ let make = (~onAdd: (string) => unit, ~onCheck: (int) => unit, ~onToggle: (int) 
                                 "fullWidth": true,
                                 "placeholder": {"test place holder"->React.string},
                                 "onKeyPress": %raw(`e => {
-                                    if (e.key === "return") {
+                                    if (e.key === "Enter") {
                                         onAdd(e.target.value)
                                     }
                                 }`)
