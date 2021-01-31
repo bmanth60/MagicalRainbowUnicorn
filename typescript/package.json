@@ -86,7 +86,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "lint": "npm run prettier && npm run prettier && npm run ts-check",
+    "lint": "npm run prettier && npm run eslint && npm run ts-check",
     "prettier": "prettier --list-different --write './**/*.ts?(x)'",
     "eslint": "eslint . --ext .ts --ext .tsx --fix",
     "ts-check": "tsc --noEmit"
