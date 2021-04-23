@@ -16,6 +16,8 @@ module.exports = {
         'plugin:react/recommended',
         'plugin:prettier/recommended',
         'plugin:react-hooks/recommended',
+        'plugin:jest/recommended',
+        'plugin:jsx-a11y/recommended',
     ],
     settings: {
         react: {
@@ -45,5 +47,6 @@ module.exports = {
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
         '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+        'jsx-a11y/no-autofocus': [2, { ignoreNonDOM: true }],
     },
 }
