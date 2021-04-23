@@ -90,7 +90,7 @@ function reducer(state: State, action: Action): State {
             }
 
             if (state.lists.length === 0) {
-                state.lists.push({ ...emptyList })
+                state.lists.push({ ...emptyList, items: [] })
             }
 
             if (state.selectedList > state.lists.length - 1) {
@@ -113,7 +113,7 @@ export default function Home() {
         editing: false,
         selectedList: 0,
         selectedItem: -1,
-        lists: [{ ...emptyList }],
+        lists: [{ ...emptyList, items: [] }],
     })
 
     return (
