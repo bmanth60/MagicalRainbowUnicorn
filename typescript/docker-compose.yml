@@ -4,12 +4,12 @@ volumes:
 
 services:
   mru:
-    image: node:14
+    image: node:14.16
     working_dir: /usr/src/app
     command: npm run start
     environment:
       PROJECT_NAME: mru
-      PROJECT_BUILD: dev
+      NODE_ENV: dev
       CHOKIDAR_USEPOLLING: "true"
     volumes:
       - .:/usr/src/app

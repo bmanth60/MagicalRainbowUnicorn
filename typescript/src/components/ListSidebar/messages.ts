@@ -6,6 +6,6 @@ interface Messages {
 
 export const messages = messagesInLocale<Messages>({
     add: {
-        en: 'Add List',
+        en: 'New List',
     },
 })

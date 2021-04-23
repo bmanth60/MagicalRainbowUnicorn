@@ -19,8 +19,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
-    "typeRoots": ["./node_modules/@types", "./@types"],
-    "types": ["@emotion/react/types/css-prop"]
+    "typeRoots": ["./node_modules/@types", "./@types", "./node_modules/@emotion/react/types"]
   },
   "include": ["**/*.ts", "**/*.tsx"]
 }
