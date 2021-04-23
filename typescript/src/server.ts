@@ -13,6 +13,8 @@ app.set('views', `${__dirname}/../views`)
 app.set('view engine', 'mustache')
 app.engine('mustache', mustache())
 
+app.disable('x-powered-by')
+
 app.use(express.static('src/static'))
 app.use(express.static('build'))
 
