@@ -3,7 +3,11 @@ import { render, screen } from '@testing-library/react'
 import App from './_App'
 
 function TestComponent() {
-    return <div />
+    return (
+        <div>
+            <a href='/'>learn react</a>
+        </div>
+    )
 }
 
 test('renders learn react link', () => {

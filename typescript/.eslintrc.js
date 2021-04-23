@@ -8,7 +8,7 @@ module.exports = {
         ecmaVersion: 2020,
         sourceType: 'module',
     },
-    plugins: ['@typescript-eslint', 'prettier', 'react'],
+    plugins: ['@typescript-eslint', 'prettier', 'react', 'jsx-a11y'],
     extends: [
         'eslint:recommended',
         'plugin:@typescript-eslint/recommended',
@@ -17,7 +17,7 @@ module.exports = {
         'plugin:prettier/recommended',
         'plugin:react-hooks/recommended',
         'plugin:jest/recommended',
-        'plugin:jsx-a11y/recommended',
+        'plugin:jsx-a11y/strict',
     ],
     settings: {
         react: {

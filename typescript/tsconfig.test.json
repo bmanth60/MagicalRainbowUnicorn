@@ -1,0 +1,10 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "allowJs": true,
+        "jsx": "react",
+        "target": "es5",
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+    }
+}
