@@ -1,7 +1,7 @@
 {
-    "watch": ["src", "public"],
+    "watch": ["src"],
     "ignore": ["src/**/*.test.ts"],
     "ext": "ts,tsx",
     "exec": "npm run build && npm run serve",
-    "legacyWatch": true
+    "verbose": true
   }

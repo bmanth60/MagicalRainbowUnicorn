@@ -48,8 +48,8 @@
   "scripts": {
     "start": "nodemon",
     "serve": "node build/server.js",
-    "build": "npm run esbuild -- --platform=node src/server.ts && npm run esbuild -- --format=cjs src/index.tsx",
-    "esbuild": "esbuild --sourcemap --bundle --define:process.env.NODE_ENV=\\\"${NODE_ENV}\\\" --minify --outdir=build",
+    "build": "npm run esbuild -- --platform=node src/server.ts && npm run esbuild -- --format=cjs --minify src/index.tsx",
+    "esbuild": "esbuild --sourcemap --bundle --define:process.env.NODE_ENV=\\\"${NODE_ENV}\\\" --outdir=build",
     "test": "echo 'TODO: Needs to be fixed...'",
     "lint": "npm run prettier && npm run eslint && npm run ts-check",
     "prettier": "prettier --list-different --write './**/*.(ts|tsx|mustache)' '.eslintrc.js'",
