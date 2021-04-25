@@ -1,40 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Typography, { TypographyProps } from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 
 export interface ListItemContentContext {
-    onClick: (e: React.MouseEvent<HTMLInputElement>) => void
-    onBlur: (
-        e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement> | React.KeyboardEvent<HTMLInputElement>
-    ) => void
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-    editable: boolean
     text: string
 }
 
 interface ListItemContentProps extends ListItemContentContext {
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
     typographyProps: TypographyProps
 }
 
-export default function ListItemContent({
-    onClick,
-    onBlur,
-    onChange,
-    editable,
-    text,
-    typographyProps,
-}: ListItemContentProps) {
-    if (editable) {
+export default function ListItemContent({ text, typographyProps, onChange }: ListItemContentProps) {
+    const [selected, setSelected] = useState<boolean>(false)
+    if (selected) {
         return (
             <TextField
                 fullWidth
                 margin='none'
                 onChange={onChange}
-                onBlur={onBlur}
+                onBlur={(_) => {
+                    setSelected(false)
+                }}
                 onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) => {
                     if (e.key === 'Enter') {
-                        onBlur(e)
+                        setSelected(false)
                     }
                 }}
                 value={text}
@@ -44,7 +35,7 @@ export default function ListItemContent({
     }
 
     return (
-        <Typography {...typographyProps} onClick={onClick}>
+        <Typography {...typographyProps} onClick={() => setSelected(true)}>
             {text || 'no name'}
         </Typography>
     )

@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx, css, useTheme, Theme } from '@emotion/react'
 import React from 'react'
+import { useRecoilState } from 'recoil'
 
 import Grid from '@material-ui/core/Grid'
 import AddCircleIcon from '@material-ui/icons/AddCircle'
@@ -10,46 +11,22 @@ import Card from '../Card'
 import ListItem from '../ListItem'
 import { messages } from './messages'
 
+import { SELECTED_LIST_ITEMS } from '../../utils/states'
+
 const styles = (theme: Theme) => ({
     margin: css({
         margin: theme.spacing(1),
     }),
 })
 
-interface ListProps {
-    onAdd: (text: string) => void
-    onCheck: (index: number) => void
-    onEdit: (index: number, text: string) => void
-    onToggle: (index: number) => void
-    editId: number
-    items: string[]
-}
-
-export default function List({ onAdd, onCheck, onToggle, onEdit, items, editId }: ListProps) {
+export default function List() {
     const theme = useTheme()
     const classes = styles(theme)
+    const [items, setItems] = useRecoilState(SELECTED_LIST_ITEMS)
 
     let result: Array<React.ReactElement<typeof ListItem>> = []
     if (items) {
-        result = items.map((item, index) => (
-            <ListItem
-                key={index}
-                editable={index === editId}
-                onClick={() => {
-                    onToggle(index)
-                }}
-                onBlur={() => {
-                    onToggle(-1)
-                }}
-                onChange={(e) => {
-                    onEdit(index, e.target.value)
-                }}
-                onCheck={() => {
-                    onCheck(index)
-                }}
-                text={item}
-            />
-        ))
+        result = items.map((text, index) => <ListItem key={index} index={index} text={text} />)
     }
 
     return (
@@ -66,7 +43,7 @@ export default function List({ onAdd, onCheck, onToggle, onEdit, items, editId }
                                 onKeyPress={(e: React.KeyboardEvent) => {
                                     const elem = e.target as HTMLInputElement
                                     if (e.key === 'Enter') {
-                                        onAdd(elem.value)
+                                        setItems([...items, elem.value])
                                     }
                                 }}
                                 placeholder={messages.add}

@@ -11,7 +11,7 @@ import DeleteIcon from '@material-ui/icons/Delete'
 
 import ListItemContent from '../ListItemContent'
 
-import { listState } from '../../utils/states'
+import { SELECTED_LIST_NAME } from '../../utils/states'
 
 const drawerWidth = 300
 
@@ -27,17 +27,9 @@ const styles = () => ({
     }),
 })
 
-interface ListHeaderProps {
-    onToggle: (toggle: boolean) => void
-    onEdit: (value: string) => void
-    onDelete: () => void
-    editing: boolean
-    message: string
-}
-
-export default function ListHeader({ onToggle, onDelete, editing }: ListHeaderProps) {
+export default function ListHeader() {
     const classes = styles()
-    const [text, setText] = useRecoilState(listState)
+    const [name, setName] = useRecoilState(SELECTED_LIST_NAME)
 
     return (
         <AppBar css={classes.header}>
@@ -45,29 +37,20 @@ export default function ListHeader({ onToggle, onDelete, editing }: ListHeaderPr
                 <Grid container spacing={0} alignItems='flex-end'>
                     <Grid item xs={11}>
                         <ListItemContent
-                            onClick={() => {
-                                onToggle(true)
-                            }}
-                            onBlur={() => {
-                                onToggle(false)
-                            }}
-                            onChange={(e) => {
-                                setText(e.target.value)
-                            }}
+                            onChange={(e) => setName(e.target.value)}
                             typographyProps={{
                                 variant: 'h4',
                                 color: 'inherit',
                                 noWrap: true,
                                 align: 'left',
                             }}
-                            editable={editing}
-                            text={text}
+                            text={name}
                         />
                     </Grid>
                     <Grid item xs={1}>
                         <IconButton
                             onClick={() => {
-                                onDelete()
+                                // Delete list
                             }}
                             aria-label='Delete'
                             color='inherit'

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSetRecoilState } from 'recoil'
 
 import Grid from '@material-ui/core/Grid'
 import Checkbox from '@material-ui/core/Checkbox'
@@ -6,11 +7,14 @@ import Checkbox from '@material-ui/core/Checkbox'
 import Card from '../Card'
 import ListItemContent, { ListItemContentContext } from '../ListItemContent'
 
+import { LIST_ITEM } from '../../utils/states'
+
 interface ListItemProps extends ListItemContentContext {
-    onCheck: (e: React.ChangeEvent<HTMLInputElement>) => void
+    index: number
 }
 
-export default function ListItem({ onCheck, onClick, onBlur, onChange, editable, text }: ListItemProps) {
+export default function ListItem({ index, text }: ListItemProps) {
+    const setItem = useSetRecoilState(LIST_ITEM(index))
     return (
         <Card>
             <Grid container spacing={0} alignItems='baseline'>
@@ -21,17 +25,16 @@ export default function ListItem({ onCheck, onClick, onBlur, onChange, editable,
                         // is a hack because it is not rerendered on deletion due to
                         // lack of key uniqueness
                         checked={false}
-                        onChange={onCheck}
+                        onChange={() => {
+                            /*empty*/
+                        }}
                     />
                 </Grid>
                 <Grid item xs={11}>
                     <ListItemContent
-                        onClick={onClick}
-                        onBlur={onBlur}
-                        onChange={onChange}
                         typographyProps={{ style: { fontSize: '1rem' }, align: 'left' }}
-                        editable={editable}
                         text={text}
+                        onChange={(e) => setItem(e.target.value)}
                     />
                 </Grid>
             </Grid>

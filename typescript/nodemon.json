@@ -2,6 +2,6 @@
     "watch": ["src"],
     "ignore": ["src/**/*.test.ts"],
     "ext": "ts,tsx",
-    "exec": "npm run build && npm run serve",
+    "exec": "npm run lint && npm run build && npm run serve",
     "verbose": true
   }

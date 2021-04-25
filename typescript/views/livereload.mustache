@@ -13,19 +13,27 @@
             // Attempt to re-establish a connection until it works,
             // failing after a few seconds (at that point things are likely
             // turned off/permanantly broken instead of rebooting)
-            const interAttemptTimeoutMilliseconds = 100
-            const maxDisconnectedTimeMilliseconds = 3000
-            const maxAttempts = Math.round(maxDisconnectedTimeMilliseconds / interAttemptTimeoutMilliseconds)
+            const mintimeout = 100
+            const maxTimeout = 300
+            const maxAttempts = 30
             let attempts = 0
+
             const reloadIfCanConnect = () => {
                 attempts++
                 if (attempts > maxAttempts) {
-                    console.error('Could not reconnect to dev server.')
+                    if (attempts < maxAttempts + 2) {
+                        // Only show dev connection error twice per closure
+                        console.error('Could not reconnect to dev server.')
+                    }
+
+                    setTimeout(reloadIfCanConnect, maxTimeout)
                     return
                 }
                 socket = new WebSocket(socketUrl)
                 socket.addEventListener('error', () => {
-                    setTimeout(reloadIfCanConnect, interAttemptTimeoutMilliseconds)
+                    // Backoff is in the pattern 100ms, 200ms, 300ms, 100ms, 200ms, 300ms....
+                    const backoff = ((mintimeout * attempts) % maxTimeout) + mintimeout
+                    setTimeout(reloadIfCanConnect, backoff)
                 })
                 socket.addEventListener('open', () => {
                     location.reload()

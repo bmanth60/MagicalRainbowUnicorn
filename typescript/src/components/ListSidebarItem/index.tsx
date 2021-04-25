@@ -1,14 +1,14 @@
 /** @jsx jsx */
 import { jsx, css, useTheme, Theme } from '@emotion/react'
 import React from 'react'
-import { useRecoilValue } from 'recoil'
+import { useSetRecoilState } from 'recoil'
 
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListIcon from '@material-ui/icons/List'
 
-import { listState } from '../../utils/states'
+import { SELECTED_STATE } from '../../utils/states'
 
 const styles = (theme: Theme) => ({
     listItem: css`
@@ -20,14 +20,15 @@ const styles = (theme: Theme) => ({
 })
 
 interface ListSidebarItemProps {
-    onClick: (e: React.MouseEvent<HTMLInputElement>) => void
+    index: number
+    text: string
     selected: boolean
 }
 
-export default function ListSidebarItem({ onClick, selected }: ListSidebarItemProps) {
+export default function ListSidebarItem({ text, selected, index }: ListSidebarItemProps) {
     const theme = useTheme()
     const classes = styles(theme)
-    const text = useRecoilValue(listState)
+    const setSelected = useSetRecoilState(SELECTED_STATE)
 
     if (selected) {
         return (
@@ -41,7 +42,7 @@ export default function ListSidebarItem({ onClick, selected }: ListSidebarItemPr
     }
 
     return (
-        <ListItem button divider onClick={onClick}>
+        <ListItem button divider onClick={() => setSelected(index)}>
             <ListItemIcon>
                 <ListIcon />
             </ListItemIcon>
