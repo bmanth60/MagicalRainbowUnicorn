@@ -20,17 +20,19 @@
 
             const reloadIfCanConnect = () => {
                 attempts++
-                if (attempts > maxAttempts) {
-                    if (attempts < maxAttempts + 2) {
-                        // Only show dev connection error twice per closure
-                        console.error('Could not reconnect to dev server.')
-                    }
-
-                    setTimeout(reloadIfCanConnect, maxTimeout)
-                    return
-                }
                 socket = new WebSocket(socketUrl)
                 socket.addEventListener('error', () => {
+                    if (attempts > maxAttempts) {
+                        if (attempts < maxAttempts + 3) {
+                            // Only show dev connection error twice per closure
+                            console.error('Could not reconnect to dev server.')
+                        }
+
+                        // There is difficulty connecting to dev server, slow down the requests
+                        setTimeout(reloadIfCanConnect, maxTimeout)
+                        return
+                    }
+
                     // Backoff is in the pattern 100ms, 200ms, 300ms, 100ms, 200ms, 300ms....
                     const backoff = ((mintimeout * attempts) % maxTimeout) + mintimeout
                     setTimeout(reloadIfCanConnect, backoff)
