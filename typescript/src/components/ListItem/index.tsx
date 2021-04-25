@@ -25,9 +25,7 @@ export default function ListItem({ index, text }: ListItemProps) {
                         // is a hack because it is not rerendered on deletion due to
                         // lack of key uniqueness
                         checked={false}
-                        onChange={() => {
-                            /*empty*/
-                        }}
+                        onChange={() => setItem(undefined)}
                     />
                 </Grid>
                 <Grid item xs={11}>

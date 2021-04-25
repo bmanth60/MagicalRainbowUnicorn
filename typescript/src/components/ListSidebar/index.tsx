@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, css, useTheme, Theme } from '@emotion/react'
 import React from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 
 import AddCircleIcon from '@material-ui/icons/AddCircle'
 import Drawer from '@material-ui/core/Drawer'
@@ -33,7 +33,7 @@ export default function ListSidebar() {
     const theme = useTheme()
     const classes = styles(theme)
 
-    const selectedList = useRecoilValue(SELECTED_STATE)
+    const [selectedList, setSelectedList] = useRecoilState(SELECTED_STATE)
     const [lists, setLists] = useRecoilState(LISTS_STATE)
     const [items, setItems] = useRecoilState(ITEMS_STATE)
     const listItems = lists.map((list, index) => (
@@ -46,11 +46,16 @@ export default function ListSidebar() {
                 <ListItem
                     button
                     onClick={() => {
+                        // TODO switch to recoil callback
+
                         // Push in a new list
                         setLists([...lists, { name: 'new list' }])
 
                         // Push new items for list
                         setItems([...items, []])
+
+                        // Update index to new list
+                        setSelectedList(lists.length)
                     }}
                 >
                     <ListItemIcon>

@@ -1,4 +1,5 @@
 import { atom, selector, selectorFamily, DefaultValue } from 'recoil'
+import { replaceItemAtArrayIndex } from './index'
 
 interface List {
     name: string
@@ -36,7 +37,7 @@ export const SELECTED_LIST = selector<List>({
         const selected = get(SELECTED_STATE)
 
         // Build new list for index and replace
-        set(LISTS_STATE, [...lists.slice(0, selected), list, ...lists.slice(selected + 1)])
+        set(LISTS_STATE, replaceItemAtArrayIndex(lists, selected, list))
     },
 })
 
@@ -74,16 +75,16 @@ export const SELECTED_LIST_ITEMS = selector<Array<string>>({
 
         const listItems = get(ITEMS_STATE)
         const selected = get(SELECTED_STATE)
-        set(ITEMS_STATE, [...listItems.slice(0, selected), items, ...listItems.slice(selected + 1)])
+        set(ITEMS_STATE, replaceItemAtArrayIndex(listItems, selected, items))
     },
 })
 
-export const LIST_ITEM = selectorFamily<string, number>({
+export const LIST_ITEM = selectorFamily<string | undefined, number>({
     key: 'listItem',
     get: (index) => ({ get }) => {
         const items = get(ITEMS_STATE)
         const selected = get(SELECTED_STATE)
-        return items[selected][index]
+        return items[selected][index]!
     },
     set: (index) => ({ get, set }, item) => {
         if (item instanceof DefaultValue) {
@@ -92,6 +93,6 @@ export const LIST_ITEM = selectorFamily<string, number>({
         }
 
         const items = get(SELECTED_LIST_ITEMS)
-        set(SELECTED_LIST_ITEMS, [...items.slice(0, index), item, ...items.slice(index + 1)])
+        set(SELECTED_LIST_ITEMS, replaceItemAtArrayIndex(items, index, item))
     },
 })
