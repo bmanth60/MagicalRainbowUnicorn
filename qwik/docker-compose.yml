@@ -1,0 +1,18 @@
+version: '3'
+volumes:
+   deps:
+
+services:
+  mru:
+    image: node:18.18
+    working_dir: /usr/src/app
+    command: npm run start
+    environment:
+      PROJECT_NAME: mru
+      NODE_ENV: development
+      CHOKIDAR_USEPOLLING: "true"
+    volumes:
+      - .:/usr/src/app
+      - deps:/usr/src/app/node_modules
+    expose:
+      - 5173
